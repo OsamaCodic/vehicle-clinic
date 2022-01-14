@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="vehicle_clinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="second_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="role" Type="Int32" />
+    <Property Name="display_order" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="vehicle_clinicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="users" EntityType="Self.user" />
+    <FunctionImport Name="GetUsers" ReturnType="Collection(vehicle_clinicModel.GetUsers_Result)" />
+  </EntityContainer>
+  <ComplexType Name="GetUsers_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="role" Nullable="true" />
+    <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+  </ComplexType>
+</Schema>
