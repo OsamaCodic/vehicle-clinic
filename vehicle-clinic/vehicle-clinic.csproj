@@ -123,7 +123,6 @@
       <LastGenOutput>VehicleClinicModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Users\form.aspx" />
-    <Content Include="Users\partials\form.aspx" />
     <Content Include="Users\index.aspx" />
     <Content Include="VehicleClinicModel1.edmx.diagram">
       <DependentUpon>VehicleClinicModel1.edmx</DependentUpon>
@@ -185,13 +184,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Users\form.aspx.designer.cs">
-      <DependentUpon>form.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Users\partials\form.aspx.cs">
-      <DependentUpon>form.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Users\partials\form.aspx.designer.cs">
       <DependentUpon>form.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\index.aspx.cs">

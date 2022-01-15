@@ -12,7 +12,9 @@
                 <h1>Dashboard</h1>
               </div>
               <div class="col-sm-1">
-                <asp:Button Text="Logout" CssClass="btn btn-danger btn-sm" ID="logoutBtn" runat="server" OnClick="logoutBtn_Click"/>
+                <form id="logoutForm" runat="server">
+                    <asp:Button Text="Logout" CssClass="btn btn-danger btn-sm" ID="logoutBtn" runat="server" OnClick="logoutBtn_Click"/>
+                </form>
               </div>
             </div>
           </div>

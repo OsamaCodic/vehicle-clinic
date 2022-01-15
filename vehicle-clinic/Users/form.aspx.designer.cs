@@ -13,48 +13,57 @@ namespace vehicle_clinic.Users {
     public partial class form1 {
         
         /// <summary>
-        /// first_name control.
+        /// userForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox first_name;
+        protected global::System.Web.UI.HtmlControls.HtmlForm userForm;
         
         /// <summary>
-        /// second_name control.
+        /// first_name_txtbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox second_name;
+        protected global::System.Web.UI.WebControls.TextBox first_name_txtbox;
         
         /// <summary>
-        /// email control.
+        /// second_name_txtbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox email;
+        protected global::System.Web.UI.WebControls.TextBox second_name_txtbox;
         
         /// <summary>
-        /// password control.
+        /// email_txtbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
+        protected global::System.Web.UI.WebControls.TextBox email_txtbox;
         
         /// <summary>
-        /// backBtn control.
+        /// password_txtbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton backBtn;
+        protected global::System.Web.UI.WebControls.TextBox password_txtbox;
+        
+        /// <summary>
+        /// submitBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button submitBtn;
     }
 }

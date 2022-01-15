@@ -17,43 +17,38 @@
     <!--content-header-->
 
     <div class="col-md-12">
-            <!-- jquery validation -->
-            <div class="card card-primary">
-              <div class="card-header">
+        <div class="card card-primary">
+            <div class="card-header">
                 <h3 class="card-title">Create new <small>User</small></h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" id="quickForm">
+            </div>
+            <form runat="server" id="userForm">
                 <div class="card-body">  
                     <div class="form-group">
                         <label for="">First Name</label>
-                        <asp:TextBox ID="first_name" placeholder="Enter first name" class="form-control" runat="server"/>
+                        <asp:TextBox ID="first_name_txtbox" placeholder="Enter first name" class="form-control" runat="server"/>
                     </div>
 
                     <div class="form-group">
                         <label for="">Second Name</label>
-                        <asp:TextBox ID="second_name" placeholder="Enter second name" class="form-control" runat="server" />
+                        <asp:TextBox ID="second_name_txtbox" placeholder="Enter second name" class="form-control" runat="server" />
                     </div>
 
                     <div class="form-group">
                         <label for="">Email:</label>
-                        <asp:TextBox ID="email" placeholder="Enter email" class="form-control" runat="server" />
+                        <asp:TextBox ID="email_txtbox" placeholder="Enter email" class="form-control" runat="server" />
                     </div>
 
                     <div class="form-group">
                         <label for="">Password:</label>
-                        <asp:TextBox ID="password" placeholder="Enter password" class="form-control" runat="server" />
+                        <asp:TextBox ID="password_txtbox" placeholder="Enter password" class="form-control" runat="server" />
                     </div>
 
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary btn-sm">Create <i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <asp:Button ID="submitBtn" OnClick="submitBtn_Click" class="btn btn-primary btn-sm" Text="Save" runat="server" />
                         
-                        <asp:LinkButton id="backBtn" PostBackUrl="~/Users/index.aspx" CssClass="btn btn-secondary btn-sm" runat="server">Back to list <i class="fa fa-chevron-left" aria-hidden="true"></i></asp:LinkButton>
                     </div>
                 </div>
-              </form>
-            </div>
-            <!-- /.card -->
-            </div>
+            </form>
+        </div>
+    </div>
 </asp:Content>
