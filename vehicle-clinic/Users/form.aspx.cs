@@ -38,6 +38,11 @@ namespace vehicle_clinic.Users
                 obj.second_name = second_name_txtbox.Text;
                 obj.email = email_txtbox.Text;
                 obj.password = password_txtbox.Text;
+                obj.display_order = display_order_txtbox.Text;
+                obj.role = Convert.ToInt32(roleList.SelectedValue);
+                obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+
+
 
                 DB.users.Add(obj);
                 DB.SaveChanges();
