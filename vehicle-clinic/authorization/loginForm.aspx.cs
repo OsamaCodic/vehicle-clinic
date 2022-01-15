@@ -24,7 +24,7 @@ namespace vehicle_clinic.authorization
             
             try
             {
-                if(DB.users.Where(r=>r.email==email_value.Text && r.password==password_value.Text).Count()>0)
+                if(DB.users.Where(r=>r.email==email_value.Text && r.password== password_value.Text).Count()>0)
                 {
                     Session["auth_user"] = email_value.Text;
                     Response.Redirect("../dashboard.aspx");

@@ -47,8 +47,8 @@
                       <label for="sel1">Select Role:</label>
                         <asp:DropDownList ID="roleList" runat="server" class="form-control" >
                         <asp:ListItem Text="--Select--" Value="null" />
-                        <asp:ListItem Text="admin" Value="1" />
-                        <asp:ListItem Text="user" Value="2" />
+                        <asp:ListItem Text="Admin" Value="1" />
+                        <asp:ListItem Text="User" Value="2" />
                       </asp:DropDownList>
                     </div>
 
@@ -56,8 +56,6 @@
                         <label for="">Display order:</label>
                         <asp:TextBox ID="display_order_txtbox" placeholder="Enter display order" TextMode="Number" class="form-control" runat="server" />
                     </div>
-
-                    
 
                     <div class="card-footer">
                         <asp:Button ID="submitBtn" OnClick="submitBtn_Click" class="btn btn-primary btn-sm" Text="Save" runat="server" />

@@ -26,37 +26,20 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <table id="example2" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                      <th>Rendering engine</th>
-                      <th>Browser</th>
-                      <th>Platform(s)</th>
-                      <th>Engine version</th>
-                      <th>CSS grade</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 4.0
-                      </td>
-                      <td>Win 95+</td>
-                      <td> 4</td>
-                      <td>X</td>
-                    </tr>
-                    <tr>
-                      <td>Trident</td>
-                      <td>Internet
-                        Explorer 5.0
-                      </td>
-                      <td>Win 95+</td>
-                      <td>5</td>
-                      <td>C</td>
-                    </tr>
-                    </tbody>
-                  </table>
+                  <asp:GridView ID="usersList_gridview" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
+                      <Columns>
+                        <asp:BoundField DataField="first_name" HeaderText="First Name" />
+                        <asp:BoundField DataField="second_name" HeaderText="Second Name" />
+                        <asp:BoundField DataField="email" HeaderText="Email" />
+                        <asp:BoundField DataField="created_at" HeaderText="Created date" />
+
+                        <asp:TemplateField HeaderText="Actions">
+                            <ItemTemplate>
+                                <asp:LinkButton Text="Edit" ID="editBtn" runat="server" CssClass="btn btn-warning btn-sm" CommandArgument='<%# Eval("user_id") %>' OnClick="editBtn_Click" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                  </asp:GridView>
                 </div>
                 <!-- /.card-body -->
               </div>

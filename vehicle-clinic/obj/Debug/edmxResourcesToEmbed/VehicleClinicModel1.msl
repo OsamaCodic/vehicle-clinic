@@ -15,15 +15,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="GetUsers" FunctionName="vehicle_clinicModel.Store.GetUsers">
+    <FunctionImportMapping FunctionImportName="readUsers" FunctionName="vehicle_clinicModel.Store.readUsers">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="vehicle_clinicModel.GetUsers_Result">
+        <ComplexTypeMapping TypeName="vehicle_clinicModel.readUsers_Result">
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="second_name" ColumnName="second_name" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="display_order" ColumnName="display_order" />
           <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

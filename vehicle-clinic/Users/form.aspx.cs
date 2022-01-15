@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Security.Cryptography;
+
 namespace vehicle_clinic.Users
 {
     public partial class form1 : System.Web.UI.Page
@@ -16,7 +18,7 @@ namespace vehicle_clinic.Users
                 {
                     ///Page load working here
                 
-
+                 
 
 
 
@@ -37,6 +39,20 @@ namespace vehicle_clinic.Users
                 obj.first_name = first_name_txtbox.Text;
                 obj.second_name = second_name_txtbox.Text;
                 obj.email = email_txtbox.Text;
+                
+                ////Convert password into Hash
+                    //string password = password_txtbox.Text;
+                    //byte[] salt = new byte[128 / 8];
+                    //using (var rngCsp = new RNGCryptoServiceProvider())
+                    //{
+                    //    rngCsp.GetNonZeroBytes(salt);
+                    //}
+                    //Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+
+                    //System.Security.Cryptography.Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, salt, 10000);
+                    //string hashed = Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256 / 8));
+                ////Convert password into Hash
+                
                 obj.password = password_txtbox.Text;
                 obj.display_order = display_order_txtbox.Text;
                 obj.role = Convert.ToInt32(roleList.SelectedValue);

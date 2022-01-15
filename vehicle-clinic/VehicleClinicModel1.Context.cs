@@ -29,9 +29,9 @@ namespace vehicle_clinic
     
         public virtual DbSet<user> users { get; set; }
     
-        public virtual ObjectResult<GetUsers_Result> GetUsers()
+        public virtual ObjectResult<readUsers_Result> readUsers()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsers_Result>("GetUsers");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<readUsers_Result>("readUsers");
         }
     }
 }

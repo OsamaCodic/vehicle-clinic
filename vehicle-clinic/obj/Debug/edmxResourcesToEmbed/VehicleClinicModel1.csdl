@@ -16,6 +16,9 @@
   <EntityContainer Name="vehicle_clinicEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="users" EntityType="Self.user" />
     <FunctionImport Name="GetUsers" ReturnType="Collection(vehicle_clinicModel.GetUsers_Result)" />
+    <FunctionImport Name="get_users" ReturnType="Collection(vehicle_clinicModel.get_users_Result)" />
+    <FunctionImport Name="getUsers2" ReturnType="Collection(vehicle_clinicModel.getUsers2_Result)" />
+    <FunctionImport Name="readUsers" ReturnType="Collection(vehicle_clinicModel.readUsers_Result)" />
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -24,5 +27,35 @@
     <Property Type="Int32" Name="role" Nullable="true" />
     <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="get_users_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="role" Nullable="true" />
+    <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getUsers2_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="role" Nullable="true" />
+    <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="readUsers_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="role" Nullable="true" />
+    <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

@@ -14,14 +14,22 @@ namespace vehicle_clinic.Users
             ///Get auth user
             if (Session["auth_user"] != null)
             {
-                //Response.Write("Welcom to Dashboard" + "<br/>" + "Admin:" + Session["auth_user"].ToString());
-               
+                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                {
+                    var data = DB.readUsers();
+                    usersList_gridview.DataSource = data;
+                    usersList_gridview.DataBind();   
+                }
             }
             else
             {
                 Response.Redirect("../authorization/loginForm.aspx");
             }
         }
-        
+
+        protected void editBtn_Click(object sender, EventArgs e)
+        {
+            int user_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
+        }
     }
 }

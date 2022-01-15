@@ -29,5 +29,14 @@ namespace vehicle_clinic.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton createUserBtn;
+        
+        /// <summary>
+        /// usersList_gridview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView usersList_gridview;
     }
 }
