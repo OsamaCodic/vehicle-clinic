@@ -21,7 +21,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Total records <small>(5)</small></h3>
+                  <h3 class="card-title">Total records <small id="totalRows" runat="server">(5)</small></h3>
                    <asp:LinkButton id="createUserBtn" PostBackUrl="~/Users/form.aspx" CssClass="btn btn-success btn-sm fa-pull-right" runat="server">Create <i class="fa fa-plus" aria-hidden="true"></i></asp:LinkButton>
                 </div>
                 <!-- /.card-header -->
@@ -36,6 +36,7 @@
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
                                 <asp:LinkButton Text="Edit" ID="editBtn" runat="server" CssClass="btn btn-warning btn-sm" CommandArgument='<%# Eval("user_id") %>' OnClick="editBtn_Click" />
+                                <asp:LinkButton Text="Delete" ID="deleteBtn" runat="server" CssClass="btn btn-danger btn-sm" CommandArgument='<%# Eval("user_id") %>' OnClick="deleteBtn_Click" OnClientClick="if (!confirm('Are you sure you want delete?')) return false;" />
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

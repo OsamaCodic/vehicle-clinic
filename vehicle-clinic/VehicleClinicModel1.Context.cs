@@ -29,9 +29,24 @@ namespace vehicle_clinic
     
         public virtual DbSet<user> users { get; set; }
     
+
         public virtual ObjectResult<readUsers_Result> readUsers()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<readUsers_Result>("readUsers");
+        }
+    
+        public virtual int deleteUser(Nullable<int> user_id)
+        {
+            var user_idParameter = user_id.HasValue ?
+                new ObjectParameter("user_id", user_id) :
+                new ObjectParameter("user_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteUser", user_idParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> totalUsers()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("totalUsers");
         }
     }
 }

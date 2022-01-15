@@ -18,7 +18,9 @@ namespace vehicle_clinic.Users
                 {
                     var data = DB.readUsers();
                     usersList_gridview.DataSource = data;
-                    usersList_gridview.DataBind();   
+                    usersList_gridview.DataBind();
+                    
+                    totalRows.InnerText = "(" + DB.readUsers().Count() + ")";
                 }
             }
             else
@@ -29,7 +31,18 @@ namespace vehicle_clinic.Users
 
         protected void editBtn_Click(object sender, EventArgs e)
         {
+        }
+
+        protected void deleteBtn_Click(object sender, EventArgs e)
+        {
             int user_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
+
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            {
+                DB.deleteUser(user_id);
+                Response.Redirect("index.aspx");
+            }
+
         }
     }
 }

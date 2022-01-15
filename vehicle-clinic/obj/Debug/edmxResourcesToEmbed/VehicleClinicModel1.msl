@@ -29,5 +29,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="deleteUser" FunctionName="vehicle_clinicModel.Store.deleteUser" />
+    <FunctionImportMapping FunctionImportName="totalUsers" FunctionName="vehicle_clinicModel.Store.totalUsers" />
   </EntityContainerMapping>
 </Mapping>

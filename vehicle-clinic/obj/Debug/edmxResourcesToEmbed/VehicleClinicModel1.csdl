@@ -19,6 +19,10 @@
     <FunctionImport Name="get_users" ReturnType="Collection(vehicle_clinicModel.get_users_Result)" />
     <FunctionImport Name="getUsers2" ReturnType="Collection(vehicle_clinicModel.getUsers2_Result)" />
     <FunctionImport Name="readUsers" ReturnType="Collection(vehicle_clinicModel.readUsers_Result)" />
+    <FunctionImport Name="deleteUser">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="totalUsers" ReturnType="Collection(Int32)" />
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />

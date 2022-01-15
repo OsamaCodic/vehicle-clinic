@@ -14,15 +14,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <style>
+
+    body{
+        background:#f4f6f9;
+        color:white;
+    }
+
     .custom_margin{
         margin-top:100px;
         padding: 22px;
     }
     .bg{
-        background: #e2e7d9;
+        background: #69717d;
         padding: 22px;
         border-radius: 25px;
-        box-shadow: 0px 0px 20px 0px #bdbdbd;
+        box-shadow: 0px 0px 20px 0px #4d4d4d;
     }
     .errorText{
         color: red;
