@@ -29,7 +29,7 @@ namespace vehicle_clinic
     
         public virtual DbSet<user> users { get; set; }
     
-
+        
         public virtual ObjectResult<readUsers_Result> readUsers()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<readUsers_Result>("readUsers");
@@ -47,6 +47,15 @@ namespace vehicle_clinic
         public virtual ObjectResult<Nullable<int>> totalUsers()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("totalUsers");
+        }
+    
+        public virtual ObjectResult<getSingleUser_Result> getSingleUser(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSingleUser_Result>("getSingleUser", userIDParameter);
         }
     }
 }

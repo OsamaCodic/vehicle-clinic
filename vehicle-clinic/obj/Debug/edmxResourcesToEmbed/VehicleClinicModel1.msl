@@ -31,5 +31,19 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="deleteUser" FunctionName="vehicle_clinicModel.Store.deleteUser" />
     <FunctionImportMapping FunctionImportName="totalUsers" FunctionName="vehicle_clinicModel.Store.totalUsers" />
+    <FunctionImportMapping FunctionImportName="getSingleUser" FunctionName="vehicle_clinicModel.Store.getSingleUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="vehicle_clinicModel.getSingleUser_Result">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="second_name" ColumnName="second_name" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="display_order" ColumnName="display_order" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -22,6 +22,19 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
         
     </asp:ContentPlaceHolder>
+
+    <style>
+        .errClass
+        {
+            color: red;
+            background: #ffcaca;
+            padding: 17px;
+            margin: 12px;
+            border-radius: 12px;
+            display:none;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

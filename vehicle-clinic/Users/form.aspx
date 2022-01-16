@@ -22,7 +22,10 @@
                 <h3 class="card-title">Create new <small>User</small></h3>
             </div>
             <form runat="server" id="userForm">
-                <div class="card-body">  
+                <div class="card-body">
+                    
+                    <div runat="server" id="errorMessage" class="errClass"></div>
+
                     <div class="form-group">
                         <label for="">First Name</label>
                         <asp:TextBox ID="first_name_txtbox" placeholder="Enter first name" class="form-control" runat="server"/>

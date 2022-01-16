@@ -165,6 +165,9 @@
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="getSingleUser_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="getUsers2_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>

@@ -23,6 +23,9 @@
       <Parameter Name="user_id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="totalUsers" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="getSingleUser" ReturnType="Collection(vehicle_clinicModel.getSingleUser_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -53,6 +56,16 @@
     <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
   </ComplexType>
   <ComplexType Name="readUsers_Result">
+    <Property Type="Int32" Name="user_id" Nullable="false" />
+    <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="role" Nullable="true" />
+    <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="getSingleUser_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
     <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />

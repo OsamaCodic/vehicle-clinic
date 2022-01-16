@@ -21,6 +21,9 @@
         <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userID" Type="int" Mode="In" />
+        </Function>
         <Function Name="readUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="vehicle_clinicModelStoreContainer">
@@ -53,6 +56,9 @@
           <Parameter Name="user_id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="totalUsers" ReturnType="Collection(Int32)" />
+          <FunctionImport Name="getSingleUser" ReturnType="Collection(vehicle_clinicModel.getSingleUser_Result)">
+            <Parameter Name="userID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetUsers_Result">
           <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -83,6 +89,16 @@
           <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="readUsers_Result">
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="role" Nullable="true" />
+          <Property Type="String" Name="display_order" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getSingleUser_Result">
           <Property Type="Int32" Name="user_id" Nullable="false" />
           <Property Type="String" Name="first_name" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="second_name" Nullable="true" MaxLength="50" />
@@ -128,6 +144,20 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="deleteUser" FunctionName="vehicle_clinicModel.Store.deleteUser" />
           <FunctionImportMapping FunctionImportName="totalUsers" FunctionName="vehicle_clinicModel.Store.totalUsers" />
+          <FunctionImportMapping FunctionImportName="getSingleUser" FunctionName="vehicle_clinicModel.Store.getSingleUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="vehicle_clinicModel.getSingleUser_Result">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
