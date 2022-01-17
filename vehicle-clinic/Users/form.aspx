@@ -17,7 +17,7 @@
     <!--content-header-->
 
     <div class="col-md-12">
-        <div id="formCard" runat="server">
+        <div runat="server" id="formCard">
             <div class="card-header">
                 <h3 class="card-title" id="formTitle" runat="server" >Create new <small>User</small></h3>
             </div>
@@ -48,13 +48,13 @@
 
                     <div class="form-group">
                       <label for="sel1">Select Role: <span class="required">*</span></label>
-                        <asp:DropDownList ID="roleList" runat="server" class="form-control" >
+                        <asp:DropDownList ID="roleList" runat="server" class="form-control" ValidationGroup="g1">
                         <asp:ListItem Text="--Select--" Value="null" />
                         <asp:ListItem Text="Admin" Value="1" />
                         <asp:ListItem Text="User" Value="2" />
                       </asp:DropDownList>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="">Display order:</label>
                         <asp:TextBox ID="display_order_txtbox" placeholder="Enter display order" TextMode="Number" class="form-control" runat="server" />
