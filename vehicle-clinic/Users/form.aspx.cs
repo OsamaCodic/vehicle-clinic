@@ -16,27 +16,37 @@ namespace vehicle_clinic.Users
             if (Session["auth_user"] != null)
                 {
 
-                    var userID = Convert.ToInt32(Request.QueryString["user_id"]);
 
 
-                    //if (userID != null)
-                    //{
-                    //    using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
-                    //    {
-                    //        //var row = DB.users.Where(r => r.user_id == userID).FirstOrDefault();
-                    //        //email_txtbox.Text = row.email; /////Object reference not set to an instance of an object.
+                if (Request.QueryString["user_id"] == null)
+                {
+                    formTitle.InnerHtml = "Create new <small>User</small>";
+                    //formCard.Add("Class", "card card-primary");
 
-                    //        string row = DB.getSingleUser(userID).FirstOrDefault().ToString();
-                    //        email_txtbox.Text = row.first_name;
-                    //    }
-                    //}
+                    ///formCard.Attr("Class", "card card-primary");
+                
+                    submitBtn.Text = "Create";
+                }
+                else
+                {
+                    formTitle.InnerHtml = "Edit <small>User</small>";
+                    formCard.Style.Add("Class", "card card-Warning");
+                    submitBtn.Text = "Update";
+                }
 
-                    
-
-              
-
-
-
+                if (Request.QueryString["user_id"] != null)
+                    {
+                        
+                        using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                        {
+                            var userID = Convert.ToInt32(Request.QueryString["user_id"]);
+                            user obj = DB.users.FirstOrDefault(u => u.user_id == userID);
+                            first_name_txtbox.Text = obj.first_name;
+                            second_name_txtbox.Text = obj.second_name;
+                            email_txtbox.Text = obj.email;
+                            display_order_txtbox.Text = obj.display_order;
+                        }
+                    }
                 }
             else
                 {
@@ -49,45 +59,46 @@ namespace vehicle_clinic.Users
         {
             using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
             {
-                ///Email should be unique
-                if (DB.users.Where(r => r.email == email_txtbox.Text).Count() > 0)
+                user obj = new user();
+
+                if (Request.QueryString["user_id"] == null) ////Create User
                 {
-                    errorMessage.Style.Add("display", "block");
-                    errorMessage.InnerHtml = "The email address is already taken. Please choose another";
+                    ///Email should be unique
+                    if (DB.users.Where(r => r.email == email_txtbox.Text).Count() > 0)
+                    {
+                        errorMessage.Style.Add("display", "block");
+                        errorMessage.InnerHtml = "The email address is already taken. Please choose another";
+                    }
+                    else
+                    {
+                        obj = new user();
+                        DB.users.Add(obj);
+                    }
                 }
-                else
+                else ////Update User
                 {
-                    user obj = new user();
-                    obj.first_name = first_name_txtbox.Text;
-                    obj.second_name = second_name_txtbox.Text;
-                    obj.email = email_txtbox.Text;
-
-                    ////Convert password into Hash
-                    //string password = password_txtbox.Text;
-                    //byte[] salt = new byte[128 / 8];
-                    //using (var rngCsp = new RNGCryptoServiceProvider())
-                    //{
-                    //    rngCsp.GetNonZeroBytes(salt);
-                    //}
-                    //Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
-
-                    //System.Security.Cryptography.Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(password, salt, 10000);
-                    //string hashed = Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(256 / 8));
-                    ////Convert password into Hash
-
-                    obj.password = password_txtbox.Text;
-                    obj.display_order = display_order_txtbox.Text;
-                    obj.role = Convert.ToInt32(roleList.SelectedValue);
-                    obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-
-
-
-                    DB.users.Add(obj);
-                    DB.SaveChanges();
-
-                    Response.Redirect("index.aspx");
+                    if (DB.users.Where(r => r.email == email_txtbox.Text).Count() > 0)
+                    {
+                        errorMessage.Style.Add("display", "block");
+                        errorMessage.InnerHtml = "The email address is already taken. Please choose another";
+                    }
+                    else
+                    {
+                        var userID = Convert.ToInt32(Request.QueryString["user_id"]);
+                        obj = DB.users.FirstOrDefault(u => u.user_id == userID);
+                    }
                 }
 
+                obj.first_name = first_name_txtbox.Text;
+                obj.second_name = second_name_txtbox.Text;
+                obj.email = email_txtbox.Text;
+                obj.password = password_txtbox.Text;
+                obj.display_order = display_order_txtbox.Text;
+                obj.role = Convert.ToInt32(roleList.SelectedValue);
+                obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
+
+                DB.SaveChanges();
+                Response.Redirect("index.aspx");
             }
         }
     }

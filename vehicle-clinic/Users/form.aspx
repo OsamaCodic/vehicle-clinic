@@ -17,9 +17,9 @@
     <!--content-header-->
 
     <div class="col-md-12">
-        <div class="card card-primary">
+        <div id="formCard" runat="server">
             <div class="card-header">
-                <h3 class="card-title">Create new <small>User</small></h3>
+                <h3 class="card-title" id="formTitle" runat="server" >Create new <small>User</small></h3>
             </div>
             <form runat="server" id="userForm">
                 <div class="card-body">
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="sel1">Select Role:</label>
+                      <label for="sel1">Select Role: <span class="required">*</span></label>
                         <asp:DropDownList ID="roleList" runat="server" class="form-control" >
                         <asp:ListItem Text="--Select--" Value="null" />
                         <asp:ListItem Text="Admin" Value="1" />

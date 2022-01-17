@@ -13,6 +13,24 @@ namespace vehicle_clinic.Users {
     public partial class form1 {
         
         /// <summary>
+        /// formCard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formCard;
+        
+        /// <summary>
+        /// formTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formTitle;
+        
+        /// <summary>
         /// userForm control.
         /// </summary>
         /// <remarks>
