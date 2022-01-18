@@ -29,16 +29,12 @@ namespace vehicle_clinic.authorization
                     Session["auth_user"] = email_value.Text;
 
                     HttpCookie cookie = new HttpCookie("LoginCredentials");
+                    cookie["authUser_Email"] = email_value.Text;
+                    cookie["authUser_Password"] = password_value.Text;
 
-                    cookie.Value = email_value.Text;
-
-                    //cookie["authUser_Email"] = email_value.Text;
-                    //cookie["authUser_Password"] = password_value.Text;
-
-
-                    cookie.Expires = DateTime.Now.AddSeconds(10);
+                    cookie.Expires = DateTime.Now.AddSeconds(60);
                     Response.Cookies.Add(cookie);
-
+                    
                     Response.Redirect("../dashboard.aspx");
                 }
                 else

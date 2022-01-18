@@ -13,6 +13,18 @@ namespace vehicle_clinic.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["LoginCredentials"];
+
+            if (cookie != null)
+            {
+                // Session'll be start through Cookie
+                Session["auth_user"] = cookie["authUser_Email"];
+            }
+            else
+            {
+                Response.Redirect("../authorization/loginForm.aspx");
+            }
+
             if (Session["auth_user"] != null)
                 {
                     if (Request.QueryString["user_id"] == null)

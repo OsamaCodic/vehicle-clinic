@@ -11,17 +11,18 @@ namespace vehicle_clinic.Users
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ///Get auth user
-            
+            HttpCookie cookie = Request.Cookies["LoginCredentials"];
 
-            if (Request.Cookies["LoginCredentials"] != null)
+            if (cookie != null)
             {
-                //Session["auth_user"] = Request.Cookies["LoginCredentials"]["authUser_Email"];
-
-                Session["auth_user"] = Request.Cookies["LoginCredentials"].Value;
-
+                // Session'll be start through Cookie
+                Session["auth_user"] = cookie["authUser_Email"];
             }
-
+            else
+            {
+                Response.Redirect("../authorization/loginForm.aspx");
+            }
+            
             if (Session["auth_user"] != null)
             {
                 using (vehicle_clinicEntities DB = new vehicle_clinicEntities())

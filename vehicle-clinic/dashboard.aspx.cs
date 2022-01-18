@@ -11,27 +11,27 @@ namespace vehicle_clinic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["LoginCredentials"] != null)
+            HttpCookie cookie = Request.Cookies["LoginCredentials"];
+
+            if (cookie != null)
             {
-                //Session["auth_user"] = Request.Cookies["LoginCredentials"]["authUser_Email"];
-
-                Session["auth_user"] = Request.Cookies["LoginCredentials"].Value;
+                Session["auth_user"] = cookie["authUser_Email"];
             }
-
+            else
+            {
+                Response.Redirect("authorization/loginForm.aspx");
+            }
+            
             if (Session["auth_user"] != null)
             {
-                ///Page load working here
-
-
+                //Page load working here
+                
                 using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                 {
 
                     total_user_box.InnerText = "(" + DB.readUsers().Count() + ")";
                 }
-
-
-
-
+                
             }
             else
             {
