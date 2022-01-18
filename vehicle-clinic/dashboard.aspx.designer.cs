@@ -29,5 +29,14 @@ namespace vehicle_clinic {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button logoutBtn;
+        
+        /// <summary>
+        /// total_user_box control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_user_box;
     }
 }

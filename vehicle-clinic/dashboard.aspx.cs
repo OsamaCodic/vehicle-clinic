@@ -11,7 +11,7 @@ namespace vehicle_clinic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.Cookies["LoginCredentials"].Value != null)
+            if (Request.Cookies["LoginCredentials"] != null)
             {
                 //Session["auth_user"] = Request.Cookies["LoginCredentials"]["authUser_Email"];
 
@@ -21,7 +21,13 @@ namespace vehicle_clinic
             if (Session["auth_user"] != null)
             {
                 ///Page load working here
-            
+
+
+                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                {
+
+                    total_user_box.InnerText = "(" + DB.readUsers().Count() + ")";
+                }
 
 
 
