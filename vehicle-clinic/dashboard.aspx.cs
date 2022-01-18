@@ -41,6 +41,13 @@ namespace vehicle_clinic
 
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
+            HttpCookie cookie = Request.Cookies["LoginCredentials"];
+
+            if (cookie != null)
+            {
+                Response.Cookies["LoginCredentials"].Expires = DateTime.Now.AddDays(-1);
+            }
+
             if (Session["auth_user"] != null)
             {
                 Session["auth_user"] = null;
