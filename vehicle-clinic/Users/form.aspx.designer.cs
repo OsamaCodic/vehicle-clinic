@@ -58,6 +58,15 @@ namespace vehicle_clinic.Users {
         protected global::System.Web.UI.WebControls.TextBox first_name_txtbox;
         
         /// <summary>
+        /// first_name_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator first_name_required;
+        
+        /// <summary>
         /// second_name_txtbox control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace vehicle_clinic.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox second_name_txtbox;
+        
+        /// <summary>
+        /// last_name_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator last_name_required;
         
         /// <summary>
         /// email_txtbox control.
@@ -76,6 +94,15 @@ namespace vehicle_clinic.Users {
         protected global::System.Web.UI.WebControls.TextBox email_txtbox;
         
         /// <summary>
+        /// email_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator email_required;
+        
+        /// <summary>
         /// password_txtbox control.
         /// </summary>
         /// <remarks>
@@ -83,6 +110,15 @@ namespace vehicle_clinic.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox password_txtbox;
+        
+        /// <summary>
+        /// password_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator password_required;
         
         /// <summary>
         /// roleList control.
@@ -94,6 +130,15 @@ namespace vehicle_clinic.Users {
         protected global::System.Web.UI.WebControls.DropDownList roleList;
         
         /// <summary>
+        /// role_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator role_required;
+        
+        /// <summary>
         /// display_order_txtbox control.
         /// </summary>
         /// <remarks>
@@ -101,6 +146,15 @@ namespace vehicle_clinic.Users {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox display_order_txtbox;
+        
+        /// <summary>
+        /// display_order_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator display_order_required;
         
         /// <summary>
         /// submitBtn control.

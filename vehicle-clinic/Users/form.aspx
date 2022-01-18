@@ -23,41 +23,48 @@
             </div>
             <form runat="server" id="userForm">
                 <div class="card-body">
-                    
+
                     <div runat="server" id="errorMessage" class="errClass"></div>
 
                     <div class="form-group">
-                        <label for="">First Name</label>
+                        <label for="">First Name <span class="required">*</span></label>
                         <asp:TextBox ID="first_name_txtbox" placeholder="Enter first name" class="form-control" runat="server"/>
+                        <asp:requiredfieldvalidator id="first_name_required" runat="Server" errormessage="First name is required!" controltovalidate="first_name_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
 
                     <div class="form-group">
-                        <label for="">Second Name</label>
+                        <label for="">Second Name <span class="required">*</span></label>
                         <asp:TextBox ID="second_name_txtbox" placeholder="Enter second name" class="form-control" runat="server" />
+                        <asp:requiredfieldvalidator id="last_name_required" runat="Server" errormessage="Last name is required!" controltovalidate="second_name_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
 
                     <div class="form-group">
-                        <label for="">Email:</label>
+                        <label for="">Email <span class="required">*</span></label>
                         <asp:TextBox ID="email_txtbox" placeholder="Enter email" class="form-control" runat="server" />
+                        <asp:requiredfieldvalidator id="email_required" runat="Server" errormessage="Email is required!" controltovalidate="email_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
 
                     <div class="form-group">
-                        <label for="">Password:</label>
+                        <label for="">Password <span class="required">*</span></label>
                         <asp:TextBox ID="password_txtbox" TextMode="Password" placeholder="Enter password" class="form-control" runat="server" />
+                        <asp:requiredfieldvalidator id="password_required" runat="Server" errormessage="Password is required!" controltovalidate="password_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
 
                     <div class="form-group">
-                      <label for="sel1">Select Role: <span class="required">*</span></label>
+                      <label for="sel1">Select Role <span class="required">*</span></label>
                         <asp:DropDownList ID="roleList" runat="server" class="form-control" ValidationGroup="g1">
-                        <asp:ListItem Text="--Select--" Value="null" />
+                        <asp:ListItem Text="--Select--" Value="0" />
                         <asp:ListItem Text="Admin" Value="1" />
                         <asp:ListItem Text="User" Value="2" />
                       </asp:DropDownList>
+
+                        <asp:requiredfieldvalidator id="role_required" runat="Server" errormessage="Please select any role!" controltovalidate="roleList" InitialValue="0" SetFocusOnError="true" display="Dynamic" forecolor="Red" />
                     </div>
                     
                     <div class="form-group">
-                        <label for="">Display order:</label>
+                        <label for="">Display order <span class="required">*</span></label>
                         <asp:TextBox ID="display_order_txtbox" placeholder="Enter display order" TextMode="Number" class="form-control" runat="server" />
+                        <asp:requiredfieldvalidator id="display_order_required" runat="Server" errormessage="Display order is required!" controltovalidate="display_order_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
 
                     <div class="card-footer">

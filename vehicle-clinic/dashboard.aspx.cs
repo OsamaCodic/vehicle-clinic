@@ -11,6 +11,13 @@ namespace vehicle_clinic
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request.Cookies["LoginCredentials"].Value != null)
+            {
+                //Session["auth_user"] = Request.Cookies["LoginCredentials"]["authUser_Email"];
+
+                Session["auth_user"] = Request.Cookies["LoginCredentials"].Value;
+            }
+
             if (Session["auth_user"] != null)
             {
                 ///Page load working here

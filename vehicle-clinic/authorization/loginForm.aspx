@@ -13,35 +13,13 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<style>
-
-    body{
-        background:#f4f6f9;
-        color:white;
-    }
-
-    .custom_margin{
-        margin-top:100px;
-        padding: 22px;
-    }
-    .bg{
-        background: #69717d;
-        padding: 22px;
-        border-radius: 25px;
-        box-shadow: 0px 0px 20px 0px #4d4d4d;
-    }
-    .errorText{
-        color: red;
-        margin-top:10px;
-    }
-</style>
+    <link href="partials/login_page_style.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server" class="custom_margin">
         <div class="container">
             <div class="row">
                 <div class="col-md-4"></div>
-
                 <div class="col-md-4 bg">
                     <h2 class="text-center">Login</h2>
                     <div class="form-group">
@@ -58,11 +36,9 @@
                     
                     <p runat="server" id="error_message" class="errorText"></p>
                  </div>
-
                 <div class="col-md-4"></div>
              </div>
         </div>
     </form>
-    
 </body>
 </html>

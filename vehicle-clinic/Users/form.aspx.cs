@@ -53,20 +53,39 @@ namespace vehicle_clinic.Users
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
-            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            if (Page.IsValid)
             {
-                if (Request.QueryString["user_id"] == null) //Create User
+                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                 {
-                    //Email should be unique
-                    if (DB.users.Where(r => r.email == email_txtbox.Text).Count() > 0)
+                    if (Request.QueryString["user_id"] == null) //Create User
                     {
-                        errorMessage.Style.Add("display", "block");
-                        errorMessage.InnerHtml = "The email address is already taken. Please choose another";
+                        //Email should be unique
+                        if (DB.users.Where(r => r.email == email_txtbox.Text).Count() > 0)
+                        {
+                            errorMessage.Style.Add("display", "block");
+                            errorMessage.InnerHtml = "The email address is already taken. Please choose another";
+                        }
+                        else
+                        {
+                            user obj = new user();
+                            
+                            obj.first_name = first_name_txtbox.Text;
+                            obj.second_name = second_name_txtbox.Text;
+                            obj.email = email_txtbox.Text;
+                            obj.password = password_txtbox.Text;
+                            obj.display_order = display_order_txtbox.Text;
+                            obj.role = Convert.ToInt32(roleList.SelectedValue);
+                            obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
+
+                            DB.users.Add(obj);
+                            DB.SaveChanges();
+                            Response.Redirect("index.aspx");
+                        }
                     }
-                    else
+                    else //Update User
                     {
-                        user obj = new user();
-                        DB.users.Add(obj);
+                        var userID = Convert.ToInt32(Request.QueryString["user_id"]);
+                        user obj = DB.users.FirstOrDefault(u => u.user_id == userID);
 
                         obj.first_name = first_name_txtbox.Text;
                         obj.second_name = second_name_txtbox.Text;
@@ -80,23 +99,10 @@ namespace vehicle_clinic.Users
                         Response.Redirect("index.aspx");
                     }
                 }
-                else //Update User
-                {
-                    var userID = Convert.ToInt32(Request.QueryString["user_id"]);
-                    user obj = DB.users.FirstOrDefault(u => u.user_id == userID);
-
-                    obj.first_name = first_name_txtbox.Text;
-                    obj.second_name = second_name_txtbox.Text;
-                    obj.email = email_txtbox.Text;
-                    obj.password = password_txtbox.Text;
-                    obj.display_order = display_order_txtbox.Text;
-                    
-                    obj.role = Convert.ToInt32(roleList.SelectedValue);
-                    obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
-                    
-                    DB.SaveChanges();
-                    Response.Redirect("index.aspx");
-                }
+            }
+            else
+            {
+                Response.Write("Form not submitted!");
             }
         }
     }

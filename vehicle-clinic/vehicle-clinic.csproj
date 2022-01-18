@@ -113,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="authorization\loginForm.aspx" />
+    <Content Include="authorization\partials\login_page_style.css" />
     <Content Include="dashboard.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">

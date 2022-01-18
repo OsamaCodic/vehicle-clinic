@@ -27,6 +27,18 @@ namespace vehicle_clinic.authorization
                 if(DB.users.Where(r=>r.email==email_value.Text && r.password== password_value.Text).Count()>0)
                 {
                     Session["auth_user"] = email_value.Text;
+
+                    HttpCookie cookie = new HttpCookie("LoginCredentials");
+
+                    cookie.Value = email_value.Text;
+
+                    //cookie["authUser_Email"] = email_value.Text;
+                    //cookie["authUser_Password"] = password_value.Text;
+
+
+                    cookie.Expires = DateTime.Now.AddSeconds(10);
+                    Response.Cookies.Add(cookie);
+
                     Response.Redirect("../dashboard.aspx");
                 }
                 else

@@ -12,6 +12,16 @@ namespace vehicle_clinic.Users
         protected void Page_Load(object sender, EventArgs e)
         {
             ///Get auth user
+            
+
+            if (Request.Cookies["LoginCredentials"] != null)
+            {
+                //Session["auth_user"] = Request.Cookies["LoginCredentials"]["authUser_Email"];
+
+                Session["auth_user"] = Request.Cookies["LoginCredentials"].Value;
+
+            }
+
             if (Session["auth_user"] != null)
             {
                 using (vehicle_clinicEntities DB = new vehicle_clinicEntities())

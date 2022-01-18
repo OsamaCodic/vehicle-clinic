@@ -1,0 +1,20 @@
+﻿
+    body{
+        background:#f4f6f9;
+        color:white;
+    }
+
+    .custom_margin{
+        margin-top:100px;
+        padding: 22px;
+    }
+    .bg{
+        background: #69717d;
+        padding: 22px;
+        border-radius: 25px;
+        box-shadow: 0px 0px 20px 0px #4d4d4d;
+    }
+    .errorText{
+        color: red;
+        margin-top:10px;
+    }
