@@ -40,7 +40,8 @@ namespace vehicle_clinic.Users
                         formCard.Attributes.Add("class", "card card-warning");
                         submitBtn.Text = "Update";
                         submitBtn.CssClass = "btn btn-warning";
-                        password_txtbox.Attributes.Add("placeholder", "Your New password");
+                        password_txtbox.Attributes.Add("placeholder", "Your new password");
+                        confirm_password_txtbox.Attributes.Add("placeholder", "Confirm new password");
                     }
 
                     if (Request.QueryString["user_id"] != null)
