@@ -51,6 +51,24 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="">Confirm Password <span class="required">*</span></label>
+                        <asp:TextBox ID="confirm_password_txtbox" TextMode="Password" placeholder="Confirm password" class="form-control" runat="server" />
+                        <asp:requiredfieldvalidator id="confirm_password_required" runat="Server" errormessage="Please Confirm your password!" controltovalidate="confirm_password_txtbox" display="Dynamic" forecolor="Red" />
+                        <asp:CompareValidator
+				            ID="ComparePassword"
+				            runat="server" 				
+				            Text="Password doesn't match!"
+                            forecolor="Red"
+				            errormessage="Password doesn't match!"
+				            ControlToValidate="confirm_password_txtbox"
+				            ControlToCompare="password_txtbox"
+				            Display="Dynamic"   
+				            Operator="Equal"
+				            Type="Integer">
+			            </asp:CompareValidator>
+                    </div>
+
+                    <div class="form-group">
                       <label for="sel1">Select Role <span class="required">*</span></label>
                         <asp:DropDownList ID="roleList" runat="server" class="form-control" ValidationGroup="g1">
                             <asp:ListItem Text="--Select--" Value="0" />

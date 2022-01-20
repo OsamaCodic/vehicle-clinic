@@ -121,6 +121,33 @@ namespace vehicle_clinic.Users {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator password_required;
         
         /// <summary>
+        /// confirm_password_txtbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox confirm_password_txtbox;
+        
+        /// <summary>
+        /// confirm_password_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator confirm_password_required;
+        
+        /// <summary>
+        /// ComparePassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator ComparePassword;
+        
+        /// <summary>
         /// roleList control.
         /// </summary>
         /// <remarks>
