@@ -26,12 +26,12 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <asp:GridView ID="usersList_gridview" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
+                  <asp:GridView ID="usersList_gridview" BorderStyle="None" GridLines="None" HeaderStyle-BackColor="#343a40" HeaderStyle-ForeColor="#c2c7d0" HeaderStyle-BorderColor="Black" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
                       <Columns>
                         <asp:BoundField DataField="first_name" HeaderText="First Name" />
-                        <asp:BoundField DataField="second_name" HeaderText="Second Name" />
+                        <asp:BoundField DataField="second_name" HeaderText="Last Name" />
                         <asp:BoundField DataField="email" HeaderText="Email" />
-                        <asp:BoundField DataField="created_at" HeaderText="Created date" />
+                        <asp:BoundField DataField="created_at" ItemStyle-CssClass="text-success text-bold" HeaderText="Created date" />
 
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
