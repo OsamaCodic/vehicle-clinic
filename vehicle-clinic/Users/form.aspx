@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/layouts/app_layout.Master" AutoEventWireup="true" CodeBehind="form.aspx.cs" Inherits="vehicle_clinic.Users.form1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Users | New User</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -19,7 +18,7 @@
     <div class="col-md-12">
         <div runat="server" id="formCard">
             <div class="card-header">
-                <h3 class="card-title" id="formTitle" runat="server" >Create new <small>User</small></h3>
+                <h3 class="card-title" id="formTitle" runat="server" ></h3>
             </div>
             <form runat="server" id="userForm">
                 <div class="card-body">

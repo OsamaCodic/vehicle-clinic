@@ -28,8 +28,23 @@ namespace vehicle_clinic
         }
     
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<category> categories { get; set; }
     
-        
+        //public virtual ObjectResult<GetUsers_Result> GetUsers()
+        //{
+        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUsers_Result>("GetUsers");
+        //}
+    
+        //public virtual ObjectResult<get_users_Result> get_users()
+        //{
+        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_users_Result>("get_users");
+        //}
+    
+        //public virtual ObjectResult<getUsers2_Result> getUsers2()
+        //{
+        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getUsers2_Result>("getUsers2");
+        //}
+    
         public virtual ObjectResult<readUsers_Result> readUsers()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<readUsers_Result>("readUsers");
@@ -56,6 +71,11 @@ namespace vehicle_clinic
                 new ObjectParameter("userID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getSingleUser_Result>("getSingleUser", userIDParameter);
+        }
+    
+        public virtual ObjectResult<getCategories_Result> getCategories()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategories_Result>("getCategories");
         }
     }
 }

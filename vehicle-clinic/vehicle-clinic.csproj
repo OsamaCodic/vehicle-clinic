@@ -116,6 +116,8 @@
   <ItemGroup>
     <Content Include="authorization\loginForm.aspx" />
     <Content Include="authorization\partials\login_page_style.css" />
+    <Content Include="Categories\form.aspx" />
+    <Content Include="Categories\index.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
@@ -161,12 +163,32 @@
     <Compile Include="authorization\loginForm.aspx.designer.cs">
       <DependentUpon>loginForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Categories\form.aspx.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categories\form.aspx.designer.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Categories\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Categories\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="category.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="getCategories_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="getSingleUser_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>

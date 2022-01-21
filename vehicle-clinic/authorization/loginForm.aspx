@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <asp:TextBox ID="password_value" placeholder="Password" class="form-control" runat="server" />
+                        <asp:TextBox ID="password_value" placeholder="Password" TextMode="Password" class="form-control" runat="server" />
                     </div>
 
                     <asp:Button ID="loginForm_Btn" Text="Save" runat="server" OnClick="loginForm_Btn_Click"  class="btn btn-block btn-success"/>

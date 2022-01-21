@@ -32,7 +32,7 @@ namespace vehicle_clinic.authorization
                     cookie["authUser_Email"] = email_value.Text;
                     cookie["authUser_Password"] = password_value.Text;
 
-                    cookie.Expires = DateTime.Now.AddSeconds(60);
+                    cookie.Expires = DateTime.Now.AddHours(1);
                     Response.Cookies.Add(cookie);
                     
                     Response.Redirect("../dashboard.aspx");

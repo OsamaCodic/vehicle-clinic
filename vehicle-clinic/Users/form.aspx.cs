@@ -29,6 +29,8 @@ namespace vehicle_clinic.Users
                 {
                     if (Request.QueryString["user_id"] == null)
                     {
+                        //Create Page
+                        this.Title = "Users | New user";
                         formTitle.InnerHtml = "Create new <small>User</small>";
                         formCard.Attributes.Add("class", "card card-primary");
                         submitBtn.Text = "Create";
@@ -36,6 +38,8 @@ namespace vehicle_clinic.Users
                     }
                     else
                     {
+                    //Edit Page
+                        this.Title = "Users | Edit User";
                         formTitle.InnerHtml = "Edit <small>User</small>";
                         formCard.Attributes.Add("class", "card card-warning");
                         submitBtn.Text = "Update";
