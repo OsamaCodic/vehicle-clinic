@@ -15,8 +15,7 @@ namespace vehicle_clinic.Categories
 
             if (cookie != null)
             {
-                // Session'll be start through Cookie
-                Session["auth_user"] = cookie["authUser_Email"];
+                Session["auth_user"] = cookie["authUser_Email"]; // Session'll be start through Cookie
 
                 if (Request.QueryString["category_id"] == null)
                 {

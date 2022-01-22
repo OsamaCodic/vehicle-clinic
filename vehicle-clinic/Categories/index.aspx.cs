@@ -11,15 +11,27 @@ namespace vehicle_clinic.Categories
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Title = "Categories | Index";
+            HttpCookie cookie = Request.Cookies["LoginCredentials"];
 
-            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            if (cookie != null)
             {
-                var data = DB.getCategories();
-                categoriesList_gridview.DataSource = data;
-                categoriesList_gridview.DataBind();
+                Session["auth_user"] = cookie["authUser_Email"]; // Session'll be start through Cookie
 
-                totalRows.InnerText = "(" + DB.getCategories().Count() + ")";
+                if (Session["auth_user"] != null)
+                {
+                    using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                    {
+                        var data = DB.getCategories();
+                        categoriesList_gridview.DataSource = data;
+                        categoriesList_gridview.DataBind();
+
+                        totalRows.InnerText = "(" + DB.getCategories().Count() + ")";
+                    }
+                }
+            }
+            else
+            {
+                Response.Redirect("../authorization/loginForm.aspx");
             }
         }
     }

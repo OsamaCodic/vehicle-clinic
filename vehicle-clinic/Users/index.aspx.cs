@@ -15,33 +15,24 @@ namespace vehicle_clinic.Users
 
             if (cookie != null)
             {
-                // Session'll be start through Cookie
-                Session["auth_user"] = cookie["authUser_Email"];
-            }
-            else
-            {
-                Response.Redirect("../authorization/loginForm.aspx");
-            }
-            
-            if (Session["auth_user"] != null)
-            {
-                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                Session["auth_user"] = cookie["authUser_Email"]; // Session'll be start through Cookie
+
+                if (Session["auth_user"] != null)
                 {
-                    var data = DB.readUsers();
-                    usersList_gridview.DataSource = data;
-                    usersList_gridview.DataBind();
-                    
-                    totalRows.InnerText = "(" + DB.readUsers().Count() + ")";
+                    using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                    {
+                        var data = DB.readUsers();
+                        usersList_gridview.DataSource = data;
+                        usersList_gridview.DataBind();
+
+                        totalRows.InnerText = "(" + DB.readUsers().Count() + ")";
+                    }
                 }
             }
             else
             {
                 Response.Redirect("../authorization/loginForm.aspx");
             }
-        }
-
-        protected void editBtn_Click(object sender, EventArgs e)
-        {
         }
 
         protected void deleteBtn_Click(object sender, EventArgs e)
@@ -53,7 +44,6 @@ namespace vehicle_clinic.Users
                 DB.deleteUser(user_id);
                 Response.Redirect("index.aspx");
             }
-
         }
     }
 }

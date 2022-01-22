@@ -17,15 +17,9 @@ namespace vehicle_clinic.Users
 
             if (cookie != null)
             {
-                // Session'll be start through Cookie
-                Session["auth_user"] = cookie["authUser_Email"];
-            }
-            else
-            {
-                Response.Redirect("../authorization/loginForm.aspx");
-            }
+                Session["auth_user"] = cookie["authUser_Email"]; // Session'll be start through Cookie
 
-            if (Session["auth_user"] != null)
+                if (Session["auth_user"] != null)
                 {
                     if (Request.QueryString["user_id"] == null)
                     {
@@ -38,7 +32,7 @@ namespace vehicle_clinic.Users
                     }
                     else
                     {
-                    //Edit Page
+                        //Edit Page
                         this.Title = "Users | Edit User";
                         formTitle.InnerHtml = "Edit <small>User</small>";
                         formCard.Attributes.Add("class", "card card-warning");
@@ -49,7 +43,7 @@ namespace vehicle_clinic.Users
                     }
 
                     if (Request.QueryString["user_id"] != null)
-                    {   
+                    {
                         using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                         {
                             var userID = Convert.ToInt32(Request.QueryString["user_id"]);
@@ -61,12 +55,12 @@ namespace vehicle_clinic.Users
                         }
                     }
                 }
+            }
             else
-                {
-                    Response.Redirect("../authorization/loginForm.aspx");
-                }
+            {
+                Response.Redirect("../authorization/loginForm.aspx");
+            }
         }
-        
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {

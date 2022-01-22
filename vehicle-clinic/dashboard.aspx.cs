@@ -16,22 +16,15 @@ namespace vehicle_clinic
             if (cookie != null)
             {
                 Session["auth_user"] = cookie["authUser_Email"];
-            }
-            else
-            {
-                Response.Redirect("authorization/loginForm.aspx");
-            }
-            
-            if (Session["auth_user"] != null)
-            {
-                //Page load working here
-                
-                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
-                {
 
-                    total_user_box.InnerText = "(" + DB.readUsers().Count() + ")";
+                if (Session["auth_user"] != null)
+                {
+                    using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                    {
+
+                        total_user_box.InnerText = "(" + DB.readUsers().Count() + ")";
+                    }
                 }
-                
             }
             else
             {
