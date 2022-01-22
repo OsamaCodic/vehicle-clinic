@@ -69,5 +69,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="deleteCategory" FunctionName="vehicle_clinicModel.Store.deleteCategory" />
   </EntityContainerMapping>
 </Mapping>

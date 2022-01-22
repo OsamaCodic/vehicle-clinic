@@ -58,13 +58,13 @@ namespace vehicle_clinic.Categories {
         protected global::System.Web.UI.WebControls.TextBox description_txtbox;
         
         /// <summary>
-        /// display_order control.
+        /// display_order_txtbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox display_order;
+        protected global::System.Web.UI.WebControls.TextBox display_order_txtbox;
         
         /// <summary>
         /// submitBtn control.

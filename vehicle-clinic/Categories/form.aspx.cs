@@ -35,7 +35,18 @@ namespace vehicle_clinic.Categories
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            {
+                category obj = new category();
+                obj.category_title = title_txtbox.Text;
+                obj.category_description = description_txtbox.Text;
+                obj.display_order = Convert.ToInt32(display_order_txtbox.Text);
+                obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
+                DB.categories.Add(obj);
+                DB.SaveChanges();
 
+                Response.Redirect("index.aspx");
+            }
         }
     }
 }

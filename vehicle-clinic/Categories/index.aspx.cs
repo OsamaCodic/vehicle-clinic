@@ -34,5 +34,18 @@ namespace vehicle_clinic.Categories
                 Response.Redirect("../authorization/loginForm.aspx");
             }
         }
+        
+        protected void deleteBtn_Click(object sender, EventArgs e)
+        {
+            int category_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
+            //Response.Write("<script>alert(" + category_id + ");</script>");
+
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            {
+                DB.deleteCategory(category_id);
+                Response.Redirect("index.aspx");
+            }
+            
+        }
     }
 }

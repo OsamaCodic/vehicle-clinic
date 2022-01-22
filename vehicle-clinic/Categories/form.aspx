@@ -34,7 +34,7 @@
 
                     <div class="form-group">
                         <label for="display_order">Display order <span class="required">*</span></label>
-                        <asp:TextBox ID="display_order" placeholder="Enter display order" class="form-control" runat="server"/>
+                        <asp:TextBox ID="display_order_txtbox" placeholder="Enter display order" class="form-control" runat="server"/>
                     </div>
                     
                     <div class="card-footer">

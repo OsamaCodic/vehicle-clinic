@@ -21,8 +21,8 @@ namespace vehicle_clinic
                 {
                     using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                     {
-
                         total_user_box.InnerText = "(" + DB.readUsers().Count() + ")";
+                        total_categories_box.InnerText = "(" + DB.getCategories().Count() + ")";
                     }
                 }
             }

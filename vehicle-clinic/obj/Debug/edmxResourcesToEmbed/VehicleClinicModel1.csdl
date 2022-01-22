@@ -28,6 +28,9 @@
     </FunctionImport>
     <EntitySet Name="categories" EntityType="vehicle_clinicModel.category" />
     <FunctionImport Name="getCategories" ReturnType="Collection(vehicle_clinicModel.getCategories_Result)" />
+    <FunctionImport Name="deleteCategory">
+      <Parameter Name="category_id" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />

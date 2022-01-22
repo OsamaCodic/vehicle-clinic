@@ -29,6 +29,9 @@
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Function Name="deleteCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="category_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_id" Type="int" Mode="In" />
         </Function>
@@ -74,6 +77,9 @@
           </FunctionImport>
           <EntitySet Name="categories" EntityType="vehicle_clinicModel.category" />
           <FunctionImport Name="getCategories" ReturnType="Collection(vehicle_clinicModel.getCategories_Result)" />
+          <FunctionImport Name="deleteCategory">
+            <Parameter Name="category_id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetUsers_Result">
           <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -216,6 +222,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="deleteCategory" FunctionName="vehicle_clinicModel.Store.deleteCategory" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

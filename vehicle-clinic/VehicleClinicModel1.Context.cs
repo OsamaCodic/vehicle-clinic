@@ -77,5 +77,14 @@ namespace vehicle_clinic
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCategories_Result>("getCategories");
         }
+    
+        public virtual int deleteCategory(Nullable<int> category_id)
+        {
+            var category_idParameter = category_id.HasValue ?
+                new ObjectParameter("category_id", category_id) :
+                new ObjectParameter("category_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCategory", category_idParameter);
+        }
     }
 }
