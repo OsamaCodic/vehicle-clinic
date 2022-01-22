@@ -36,7 +36,7 @@
 
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <%--<asp:HyperLink ID="EditBtn" runat="server" Class="btn btn-outline-info btn-sm" NavigateUrl='<%# "~/Users/form.aspx?user_id=" + Eval("user_id") %>'><i class="nav-icon fas fa-edit"></i></asp:HyperLink>--%>
+                                <asp:HyperLink ID="EditBtn" runat="server" Class="btn btn-outline-info btn-sm" NavigateUrl='<%# "~/Categories/form.aspx?category_id=" + Eval("category_id") %>'><i class="nav-icon fas fa-edit"></i></asp:HyperLink>
                                 <asp:LinkButton ID="deleteBtn" runat="server" CssClass="btn btn-outline-danger btn-sm" OnClick="deleteBtn_Click" CommandArgument='<%# Eval("category_id") %>' OnClientClick="if (!confirm('Are you sure you want delete?')) return false;" ><i class="fa fa-trash" aria-hidden="true"></i></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>

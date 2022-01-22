@@ -40,10 +40,7 @@ namespace vehicle_clinic.Users
                         submitBtn.CssClass = "btn btn-warning";
                         password_txtbox.Attributes.Add("placeholder", "Your new password");
                         confirm_password_txtbox.Attributes.Add("placeholder", "Confirm new password");
-                    }
 
-                    if (Request.QueryString["user_id"] != null)
-                    {
                         using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                         {
                             var userID = Convert.ToInt32(Request.QueryString["user_id"]);
