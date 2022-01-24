@@ -29,6 +29,7 @@ namespace vehicle_clinic
     
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<category> categories { get; set; }
+        public virtual DbSet<product> products { get; set; }
     
         //public virtual ObjectResult<GetUsers_Result> GetUsers()
         //{
@@ -85,6 +86,15 @@ namespace vehicle_clinic
                 new ObjectParameter("category_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCategory", category_idParameter);
+        }
+    
+        public virtual int deleteCategory2(Nullable<int> categoryID)
+        {
+            var categoryIDParameter = categoryID.HasValue ?
+                new ObjectParameter("categoryID", categoryID) :
+                new ObjectParameter("categoryID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCategory2", categoryIDParameter);
         }
     }
 }

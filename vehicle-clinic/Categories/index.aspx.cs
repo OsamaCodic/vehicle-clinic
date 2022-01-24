@@ -40,12 +40,19 @@ namespace vehicle_clinic.Categories
             int category_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
             //Response.Write("<script>alert(" + category_id + ");</script>");
 
-            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            try
             {
-                DB.deleteCategory(category_id);
-                Response.Redirect("index.aspx");
+                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                {
+                    DB.deleteCategory(category_id);
+                    Response.Redirect("index.aspx");
+                }
             }
-            
+            catch (Exception)
+            {
+                Response.Write("<script>alert('Brand used in products');</script>");
+                //throw;
+            }
         }
     }
 }

@@ -16,6 +16,30 @@
           <Property Name="created_at" Type="varchar" MaxLength="20" />
           <Property Name="updated_at" Type="varchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_id" Type="int" />
+          <Property Name="brand_title" Type="varchar" MaxLength="20" />
+          <Property Name="product_name" Type="varchar" MaxLength="30" />
+          <Property Name="product_price" Type="float" />
+          <Property Name="product_description" Type="varbinary" MaxLength="150" />
+          <Property Name="product_colours" Type="varchar" MaxLength="100" />
+          <Property Name="product_dimensions" Type="varchar" MaxLength="100" />
+          <Property Name="product_weight" Type="float" />
+          <Property Name="product_tax" Type="int" />
+          <Property Name="product_discount" Type="int" />
+          <Property Name="release_date" Type="varchar" MaxLength="50" />
+          <Property Name="total_sold" Type="int" />
+          <Property Name="manufactured_type" Type="varchar" MaxLength="50" />
+          <Property Name="availible_quantity" Type="int" />
+          <Property Name="delived_time" Type="varchar" MaxLength="50" />
+          <Property Name="display_order" Type="int" />
+          <Property Name="created_at" Type="varchar" MaxLength="50" />
+          <Property Name="updated_at" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="user_id" />
@@ -29,8 +53,23 @@
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_products_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="deleteCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="category_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deleteCategory2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="categoryID" Type="int" Mode="In" />
         </Function>
         <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_id" Type="int" Mode="In" />
@@ -43,7 +82,12 @@
         <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="vehicle_clinicModelStoreContainer">
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -78,7 +122,15 @@
           <EntitySet Name="categories" EntityType="vehicle_clinicModel.category" />
           <FunctionImport Name="getCategories" ReturnType="Collection(vehicle_clinicModel.getCategories_Result)" />
           <FunctionImport Name="deleteCategory">
-            <Parameter Name="category_id" Mode="In" Type="Int32" />
+          <Parameter Name="category_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="products" EntityType="vehicle_clinicModel.product" />
+          <AssociationSet Name="FK_products_categories" Association="vehicle_clinicModel.FK_products_categories">
+            <End Role="category" EntitySet="categories" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+          <FunctionImport Name="deleteCategory2">
+          <Parameter Name="categoryID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GetUsers_Result">
@@ -139,6 +191,7 @@
           <Property Name="display_order" Type="Int32" />
           <Property Name="created_at" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="updated_at" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="products" Relationship="vehicle_clinicModel.FK_products_categories" FromRole="category" ToRole="product" />
         </EntityType>
         <ComplexType Name="getCategories_Result">
           <Property Type="Int32" Name="category_id" Nullable="false" />
@@ -148,6 +201,43 @@
           <Property Type="String" Name="created_at" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="updated_at" Nullable="true" MaxLength="20" />
         </ComplexType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_id" Type="Int32" />
+          <Property Name="brand_title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="product_name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="product_price" Type="Double" />
+          <Property Name="product_description" Type="Binary" MaxLength="150" FixedLength="false" />
+          <Property Name="product_colours" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="product_dimensions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="product_weight" Type="Double" />
+          <Property Name="product_tax" Type="Int32" />
+          <Property Name="product_discount" Type="Int32" />
+          <Property Name="release_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="total_sold" Type="Int32" />
+          <Property Name="manufactured_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="availible_quantity" Type="Int32" />
+          <Property Name="delived_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="display_order" Type="Int32" />
+          <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="category" Relationship="vehicle_clinicModel.FK_products_categories" FromRole="product" ToRole="category" />
+        </EntityType>
+        <Association Name="FK_products_categories">
+          <End Type="vehicle_clinicModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="vehicle_clinicModel.product" Role="product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="product">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -223,6 +313,32 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="deleteCategory" FunctionName="vehicle_clinicModel.Store.deleteCategory" />
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="vehicle_clinicModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="delived_time" ColumnName="delived_time" />
+                <ScalarProperty Name="availible_quantity" ColumnName="availible_quantity" />
+                <ScalarProperty Name="manufactured_type" ColumnName="manufactured_type" />
+                <ScalarProperty Name="total_sold" ColumnName="total_sold" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="product_discount" ColumnName="product_discount" />
+                <ScalarProperty Name="product_tax" ColumnName="product_tax" />
+                <ScalarProperty Name="product_weight" ColumnName="product_weight" />
+                <ScalarProperty Name="product_dimensions" ColumnName="product_dimensions" />
+                <ScalarProperty Name="product_colours" ColumnName="product_colours" />
+                <ScalarProperty Name="product_description" ColumnName="product_description" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="deleteCategory2" FunctionName="vehicle_clinicModel.Store.deleteCategory2" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
