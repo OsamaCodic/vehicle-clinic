@@ -96,5 +96,10 @@ namespace vehicle_clinic
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteCategory2", categoryIDParameter);
         }
+    
+        public virtual ObjectResult<getProducts_Result> getProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProducts_Result>("getProducts");
+        }
     }
 }

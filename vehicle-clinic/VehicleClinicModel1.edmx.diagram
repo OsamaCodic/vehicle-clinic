@@ -7,7 +7,7 @@
       <Diagram DiagramId="23a114d5bc944c1b9855a80358bc059c" Name="Diagram1">
         <EntityTypeShape EntityType="vehicle_clinicModel.user" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="vehicle_clinicModel.category" Width="1.625" PointX="3.375" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="vehicle_clinicModel.product" Width="1.5" PointX="5.75" PointY="7.75" />
+        <EntityTypeShape EntityType="vehicle_clinicModel.product" Width="1.5" PointX="5.875" PointY="3.125" />
         <AssociationConnector Association="vehicle_clinicModel.FK_products_categories" />
       </Diagram>
     </edmx:Diagrams>

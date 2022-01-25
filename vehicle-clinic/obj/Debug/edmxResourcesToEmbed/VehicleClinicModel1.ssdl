@@ -34,6 +34,9 @@
     <Property Name="display_order" Type="int" />
     <Property Name="created_at" Type="varchar" MaxLength="50" />
     <Property Name="updated_at" Type="varchar" MaxLength="50" />
+    <Property Name="file_name" Type="varchar" MaxLength="100" />
+    <Property Name="file_size" Type="int" />
+    <Property Name="file_data" Type="varbinary" MaxLength="500" />
   </EntityType>
   <EntityType Name="users">
     <Key>
@@ -70,6 +73,7 @@
     <Parameter Name="user_id" Type="int" Mode="In" />
   </Function>
   <Function Name="getCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userID" Type="int" Mode="In" />
   </Function>

@@ -7,54 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace vehicle_clinic {
+namespace vehicle_clinic.Products {
     
     
-    public partial class dashboard {
+    public partial class form {
         
         /// <summary>
-        /// logoutForm control.
+        /// formCard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm logoutForm;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formCard;
         
         /// <summary>
-        /// logoutBtn control.
+        /// formTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logoutBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl formTitle;
         
         /// <summary>
-        /// total_user_box control.
+        /// productForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_user_box;
+        protected global::System.Web.UI.HtmlControls.HtmlForm productForm;
         
         /// <summary>
-        /// total_categories_box control.
+        /// productImages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_categories_box;
+        protected global::System.Web.UI.WebControls.FileUpload productImages;
         
         /// <summary>
-        /// total_products_box control.
+        /// submitBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_products_box;
+        protected global::System.Web.UI.WebControls.Button submitBtn;
     }
 }

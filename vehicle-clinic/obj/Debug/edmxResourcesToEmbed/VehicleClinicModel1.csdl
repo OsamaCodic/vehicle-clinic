@@ -39,6 +39,7 @@
     <FunctionImport Name="deleteCategory2">
       <Parameter Name="categoryID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="getProducts" ReturnType="Collection(vehicle_clinicModel.getProducts_Result)" />
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -132,6 +133,9 @@
     <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="updated_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="category" Relationship="vehicle_clinicModel.FK_products_categories" FromRole="product" ToRole="category" />
+    <Property Name="file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="file_size" Type="Int32" />
+    <Property Name="file_data" Type="Binary" MaxLength="500" FixedLength="false" />
   </EntityType>
   <Association Name="FK_products_categories">
     <End Type="vehicle_clinicModel.category" Role="category" Multiplicity="0..1" />
@@ -145,4 +149,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="getProducts_Result">
+    <Property Type="Int32" Name="product_id" Nullable="false" />
+    <Property Type="Int32" Name="category_id" Nullable="true" />
+    <Property Type="String" Name="brand_title" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="product_name" Nullable="true" MaxLength="30" />
+    <Property Type="Double" Name="product_price" Nullable="true" />
+    <Property Type="Binary" Name="product_description" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="product_colours" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="product_dimensions" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="product_weight" Nullable="true" />
+    <Property Type="Int32" Name="product_tax" Nullable="true" />
+    <Property Type="Int32" Name="product_discount" Nullable="true" />
+    <Property Type="String" Name="release_date" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="total_sold" Nullable="true" />
+    <Property Type="String" Name="manufactured_type" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="availible_quantity" Nullable="true" />
+    <Property Type="String" Name="delived_time" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="display_order" Nullable="true" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="file_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="file_size" Nullable="true" />
+    <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
+  </ComplexType>
 </Schema>

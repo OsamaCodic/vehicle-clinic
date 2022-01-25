@@ -127,6 +127,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>VehicleClinicModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Products\form.aspx" />
+    <Content Include="Products\index.aspx" />
     <Content Include="Users\form.aspx" />
     <Content Include="Users\index.aspx" />
     <Content Include="VehicleClinicModel1.edmx.diagram">
@@ -190,6 +192,9 @@
     <Compile Include="getCategories_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="getProducts_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="getSingleUser_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
@@ -211,6 +216,20 @@
     </Compile>
     <Compile Include="product.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Products\form.aspx.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\form.aspx.designer.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="readUsers_Result.cs">
@@ -255,6 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\adminlLTE-template\" />
+    <Folder Include="public\upload_files\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

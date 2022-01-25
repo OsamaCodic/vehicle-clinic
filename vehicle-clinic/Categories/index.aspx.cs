@@ -50,7 +50,7 @@ namespace vehicle_clinic.Categories
             }
             catch (Exception)
             {
-                Response.Write("<script>alert('Brand used in products');</script>");
+                Response.Write("<script>alert('Category used in products');</script>");
                 //throw;
             }
         }

@@ -19,7 +19,7 @@
             <div class="card-header">
                 <h3 class="card-title" id="formTitle" runat="server" ></h3>
             </div>
-            <form runat="server" id="userForm">
+            <form runat="server" id="categoryForm">
                 <div class="card-body">
 
                     <div class="form-group">

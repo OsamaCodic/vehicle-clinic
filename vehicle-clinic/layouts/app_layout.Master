@@ -91,8 +91,26 @@
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../Categories/index.aspx" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="nav-icon far fa-circle text-info"></i>
                           <p>Categories</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon ion ion-bag" aria-hidden="true"></i>
+                      <p>
+                        All Products
+                        <i class="fas fa-angle-left right"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="../Products/index.aspx" class="nav-link">
+                          <i class="nav-icon far fa-circle text-success"></i>
+                          <p>Products</p>
                         </a>
                       </li>
                     </ul>
@@ -109,7 +127,7 @@
                     <ul class="nav nav-treeview">
                       <li class="nav-item">
                         <a href="../Users/index.aspx" class="nav-link">
-                          <i class="far fa-circle nav-icon"></i>
+                          <i class="nav-icon far fa-circle text-warning"></i>
                           <p>Users</p>
                         </a>
                       </li>

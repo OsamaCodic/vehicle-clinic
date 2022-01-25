@@ -31,13 +31,13 @@ namespace vehicle_clinic.Categories {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl formTitle;
         
         /// <summary>
-        /// userForm control.
+        /// categoryForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm userForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm categoryForm;
         
         /// <summary>
         /// title_txtbox control.
