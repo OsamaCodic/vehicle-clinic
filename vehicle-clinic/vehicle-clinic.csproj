@@ -231,6 +231,9 @@
     <Compile Include="Products\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="products_with_Category_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="readUsers_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>

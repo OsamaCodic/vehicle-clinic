@@ -37,6 +37,7 @@
     <Property Name="file_name" Type="varchar" MaxLength="100" />
     <Property Name="file_size" Type="int" />
     <Property Name="file_data" Type="varbinary" MaxLength="500" />
+    <Property Name="product_description2" Type="varchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="users">
     <Key>
@@ -69,6 +70,9 @@
   <Function Name="deleteCategory2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="categoryID" Type="int" Mode="In" />
   </Function>
+  <Function Name="deleteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="prod_id" Type="int" Mode="In" />
+  </Function>
   <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="user_id" Type="int" Mode="In" />
   </Function>
@@ -77,6 +81,7 @@
   <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userID" Type="int" Mode="In" />
   </Function>
+  <Function Name="products_with_Category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="readUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="vehicle_clinicModelStoreContainer">

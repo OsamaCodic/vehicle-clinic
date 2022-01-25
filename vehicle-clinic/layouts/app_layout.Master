@@ -37,6 +37,13 @@
         .required{
             color:red;
         }
+
+        .tableScroll{
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+            text-align:center;
+        }
     </style>
 
 </head>

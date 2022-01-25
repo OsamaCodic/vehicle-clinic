@@ -38,6 +38,7 @@ namespace vehicle_clinic.Users
         protected void deleteBtn_Click(object sender, EventArgs e)
         {
             int user_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
+            //Response.Write("<script>alert(" + user_id + ");</script>");
 
             using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
             {

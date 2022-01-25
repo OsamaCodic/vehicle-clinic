@@ -101,5 +101,19 @@ namespace vehicle_clinic
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getProducts_Result>("getProducts");
         }
+    
+        public virtual ObjectResult<products_with_Category_Result> products_with_Category()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<products_with_Category_Result>("products_with_Category");
+        }
+    
+        public virtual int deleteProduct(Nullable<int> prod_id)
+        {
+            var prod_idParameter = prod_id.HasValue ?
+                new ObjectParameter("prod_id", prod_id) :
+                new ObjectParameter("prod_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteProduct", prod_idParameter);
+        }
     }
 }
