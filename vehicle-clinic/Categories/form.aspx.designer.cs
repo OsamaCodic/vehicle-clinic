@@ -49,6 +49,15 @@ namespace vehicle_clinic.Categories {
         protected global::System.Web.UI.WebControls.TextBox title_txtbox;
         
         /// <summary>
+        /// category_title_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator category_title_required;
+        
+        /// <summary>
         /// description_txtbox control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace vehicle_clinic.Categories {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox display_order_txtbox;
+        
+        /// <summary>
+        /// category_display_order_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator category_display_order_required;
         
         /// <summary>
         /// submitBtn control.

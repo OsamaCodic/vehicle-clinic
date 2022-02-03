@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/layouts/app_layout.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="vehicle_clinic.Categories.index" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Categories | Index</title>  
+    <title>Categories | Index</title>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!--content-header-->
         <section class="content-header">
           <div class="container-fluid">
@@ -26,6 +26,12 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
+
+                  <div id="alertMessage" class="alert alert-success" role="alert" style="display:none">
+                      <h5 class="alert-heading"><i class="fa fa-check-circle" aria-hidden="true"></i> Successfully!</h5>
+                      <p>New record created successfully.</p>
+                  </div>
+
                   <asp:GridView ID="categoriesList_gridview" BorderStyle="None" GridLines="None" HeaderStyle-BackColor="#343a40" HeaderStyle-ForeColor="#c2c7d0" HeaderStyle-BorderColor="Black" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
                       <Columns>
                         <asp:BoundField DataField="category_title" HeaderText="Title" />

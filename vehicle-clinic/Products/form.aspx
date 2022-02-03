@@ -26,6 +26,7 @@
                             <div class="form-group">
                               <label for="">Select Product Category <span class="required">*</span></label>
                                 <asp:DropDownList ID="categoriesList" runat="server" class="form-control" ValidationGroup="g1">
+                                    <asp:ListItem Text="--Select--" Value="0" />
                                 </asp:DropDownList>
 
                                 <asp:requiredfieldvalidator id="role_required" runat="Server" errormessage="Please select any role!" controltovalidate="categoriesList" InitialValue="0" SetFocusOnError="true" display="Dynamic" forecolor="Red" />
@@ -149,7 +150,7 @@
                    <div class="row">
                        <div class="col-md-4">
                            <div class="form-group">
-                              <label for="">Product Discount</label>
+                              <label for="">Manufactured Type <span class="required">*</span></label>
                                 <asp:DropDownList ID="manufacture_type_list" runat="server" class="form-control" ValidationGroup="g1">
                                     <asp:ListItem Text="--Select--" Value="0" />
                                     <asp:ListItem Text="Local" Value="Local" />
@@ -179,7 +180,10 @@
                    <div class="form-group">
                       <label for="">Product Images <span class="required">*</span></label> <br/>
                       <asp:FileUpload ID="productImages" runat="server" />
+                       <br />
+                       <asp:requiredfieldvalidator id="product_image_required" runat="Server" errormessage="Image must be uploaded!" controltovalidate="productImages" display="Dynamic" forecolor="Red" />
                    </div>
+                   <div class="required" id="wrong_img_msg" runat="server"></div> <br/>
 
                    <div class="card-footer">
                     <asp:Button ID="submitBtn" OnClick="submitBtn_Click" class="btn btn-primary btn-sm" Text="Save" runat="server" />

@@ -25,6 +25,7 @@
                     <div class="form-group">
                         <label for="">Title <span class="required">*</span></label>
                         <asp:TextBox ID="title_txtbox" placeholder="Enter category title" class="form-control" runat="server"/>
+                        <asp:requiredfieldvalidator id="category_title_required" runat="Server" errormessage="Category title is required!" controltovalidate="title_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
 
                     <div class="form-group">
@@ -35,6 +36,7 @@
                     <div class="form-group">
                         <label for="display_order">Display order <span class="required">*</span></label>
                         <asp:TextBox ID="display_order_txtbox" TextMode="number" placeholder="Enter display order" class="form-control" runat="server"/>
+                        <asp:requiredfieldvalidator id="category_display_order_required" runat="Server" errormessage="Display order is required!" controltovalidate="display_order_txtbox" display="Dynamic" forecolor="Red" />
                     </div>
                     
                     <div class="card-footer">

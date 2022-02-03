@@ -24,6 +24,8 @@ namespace vehicle_clinic.Products
                         var data = DB.products_with_Category();
                         productsList_gridview.DataSource = data;
                         productsList_gridview.DataBind();
+
+                        totalRows.InnerText = "(" + DB.products_with_Category().Count() + ")";
                     }
                 }
             }

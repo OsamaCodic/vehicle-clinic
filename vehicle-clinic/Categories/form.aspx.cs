@@ -16,7 +16,9 @@ namespace vehicle_clinic.Categories
             if (cookie != null)
             {
                 Session["auth_user"] = cookie["authUser_Email"]; // Session'll be start through Cookie
-                
+
+                if (IsPostBack) return; //If PostBack is true don't fill form form will fill first time
+
                 if (Request.QueryString["category_id"] == null)
                 {
                     //Create Page

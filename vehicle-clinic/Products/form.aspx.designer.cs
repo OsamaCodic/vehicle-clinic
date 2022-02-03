@@ -292,6 +292,24 @@ namespace vehicle_clinic.Products {
         protected global::System.Web.UI.WebControls.FileUpload productImages;
         
         /// <summary>
+        /// product_image_required control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator product_image_required;
+        
+        /// <summary>
+        /// wrong_img_msg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl wrong_img_msg;
+        
+        /// <summary>
         /// submitBtn control.
         /// </summary>
         /// <remarks>

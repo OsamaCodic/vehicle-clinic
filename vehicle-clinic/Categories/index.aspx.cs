@@ -19,6 +19,8 @@ namespace vehicle_clinic.Categories
 
                 if (Session["auth_user"] != null)
                 {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "Confirm();", true);
+
                     using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                     {
                         var data = DB.getCategories();

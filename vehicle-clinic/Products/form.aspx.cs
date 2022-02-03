@@ -33,6 +33,37 @@ namespace vehicle_clinic.Products
                         submitBtn.Text = "Add product";
                         submitBtn.CssClass = "btn btn-primary";
                     }
+                    else
+                    {
+                        //Edit Page
+                        this.Title = "Products | Edit product";
+                        formTitle.InnerHtml = "Edit <small>Product</small>";
+                        formCard.Attributes.Add("class", "card card-warning");
+                        submitBtn.Text = "Update";
+                        submitBtn.CssClass = "btn btn-warning";
+
+                        using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                        {
+                            var productID = Convert.ToInt32(Request.QueryString["product_id"]);
+                            product obj = DB.products.FirstOrDefault(prod => prod.product_id == productID);
+                            categoriesList.Items.FindByValue(obj.category_id.ToString()).Selected = true;
+                            brand_txtbox.Text = obj.brand_title;
+                            product_name_txtbox.Text = obj.product_name;
+                            product_price_txtbox.Text = obj.product_price.ToString();
+                            description_txtbox.Text = obj.product_description2;
+                            product_colours_txtbox.Text = obj.product_colours;
+                            dimensions_txtbox.Text = obj.product_dimensions;
+                            weight_txtbox.Text = obj.product_weight.ToString();
+                            taxlist.Items.FindByValue(obj.product_tax.ToString()).Selected = true;
+                            discountList.Items.FindByValue(obj.product_discount.ToString()).Selected = true;
+                            release_date_txtbox.Text = obj.release_date;
+                            delivered_time_txtbox.Text = obj.delived_time;
+                            sold_txtbox.Text = obj.total_sold.ToString();
+                            manufacture_type_list.Items.FindByValue(obj.manufactured_type.ToString()).Selected = true;
+                            availible_qty_txtbox.Text = obj.availible_quantity.ToString();
+                            display_order_txtbox.Text = obj.display_order.ToString();
+                        }
+                    }
                 }
             }
             else
@@ -45,19 +76,11 @@ namespace vehicle_clinic.Products
         {
             using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
             {
-
-                categoriesList.Items.Add(new ListItem("Test"));
-
                 var data = DB.getCategories();
                 categoriesList.DataSource = data;
                 categoriesList.DataTextField = "category_title";
                 categoriesList.DataValueField = "category_id";
                 categoriesList.DataBind();
-
-                
-
-
-
             }
         }
 
@@ -73,6 +96,19 @@ namespace vehicle_clinic.Products
                 using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                 {
                     product obj = new product();
+
+                    if (Request.QueryString["product_id"] == null)
+                    {
+                        //Add product
+                        DB.products.Add(obj);
+                    }
+                    else
+                    {
+                        //Update Product
+                        var productID = Convert.ToInt32(Request.QueryString["product_id"]);
+                        obj = DB.products.FirstOrDefault(prod => prod.product_id == productID);
+                    }
+
                     obj.category_id = Convert.ToInt32(categoriesList.SelectedValue);
                     obj.brand_title = brand_txtbox.Text;
                     obj.product_name = product_name_txtbox.Text;
@@ -92,17 +128,15 @@ namespace vehicle_clinic.Products
                     obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
                     obj.file_name = image_name;
                     productImages.SaveAs(Server.MapPath("~/public/upload_files/" + image_name));
-                    
-                    DB.products.Add(obj);
+
                     DB.SaveChanges();
+                    Response.Redirect("index.aspx");
                 }
             }
             else
             {
-                Response.Write("Only Images (.jpg, .jpeg, .png, .bmp) are allowed!");    
+                wrong_img_msg.InnerHtml = "Only Images (.jpg, .jpeg, .png, .bmp) are allowed!";
             }
-
-            Response.Redirect("index.aspx");
         }
     }
 }

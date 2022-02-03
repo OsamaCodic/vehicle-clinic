@@ -19,8 +19,7 @@
   <link rel="stylesheet" href="../public/adminlLTE-template/plugins/summernote/summernote-bs4.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
-        
+    <asp:ContentPlaceHolder ID="head" runat="server">    
     </asp:ContentPlaceHolder>
 
     <style>
@@ -45,7 +44,6 @@
             text-align:center;
         }
     </style>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

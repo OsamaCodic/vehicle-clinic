@@ -21,6 +21,8 @@ namespace vehicle_clinic.Users
 
                 if (Session["auth_user"] != null)
                 {
+                    if (IsPostBack) return; //If PostBack is true don't fill form form will fill first time
+
                     if (Request.QueryString["user_id"] == null)
                     {
                         //Create Page
@@ -49,6 +51,7 @@ namespace vehicle_clinic.Users
                             second_name_txtbox.Text = obj.second_name;
                             email_txtbox.Text = obj.email;
                             display_order_txtbox.Text = obj.display_order;
+                            roleList.Items.FindByValue(obj.role.ToString()).Selected = true;
                         }
                     }
                 }
