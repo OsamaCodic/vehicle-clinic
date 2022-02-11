@@ -44,6 +44,11 @@
     <FunctionImport Name="deleteProduct">
       <Parameter Name="prod_id" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="brands" EntityType="vehicle_clinicModel.brand" />
+    <FunctionImport Name="deleteBrand">
+      <Parameter Name="brand_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getBrands" ReturnType="Collection(vehicle_clinicModel.getBrands_Result)" />
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -203,5 +208,26 @@
     <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
     <Property Type="String" Name="product_description2" Nullable="true" MaxLength="150" />
     <Property Type="String" Name="category_title" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <EntityType Name="brand">
+    <Key>
+      <PropertyRef Name="brand_id" />
+    </Key>
+    <Property Name="brand_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="brand_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="brand_description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="brand_display_order" Type="Int32" />
+    <Property Name="brand_logo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updated_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="getBrands_Result">
+    <Property Type="Int32" Name="brand_id" Nullable="false" />
+    <Property Type="String" Name="brand_title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="brand_description" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="brand_display_order" Nullable="true" />
+    <Property Type="String" Name="brand_logo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
   </ComplexType>
 </Schema>

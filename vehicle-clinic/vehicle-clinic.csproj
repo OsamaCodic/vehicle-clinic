@@ -116,9 +116,12 @@
   <ItemGroup>
     <Content Include="authorization\loginForm.aspx" />
     <Content Include="authorization\partials\login_page_style.css" />
+    <Content Include="Brands\form.aspx" />
+    <Content Include="Brands\index.aspx" />
     <Content Include="Categories\form.aspx" />
     <Content Include="Categories\index.aspx" />
     <Content Include="dashboard.aspx" />
+    <Content Include="Frontend\products\products.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -165,6 +168,23 @@
     <Compile Include="authorization\loginForm.aspx.designer.cs">
       <DependentUpon>loginForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="brand.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Brands\form.aspx.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Brands\form.aspx.designer.cs">
+      <DependentUpon>form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Brands\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Brands\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Categories\form.aspx.cs">
       <DependentUpon>form.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -188,6 +208,16 @@
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\products\products.aspx.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\products\products.aspx.designer.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="getBrands_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="getCategories_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>

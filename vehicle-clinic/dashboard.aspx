@@ -51,6 +51,21 @@
             </div>
           </div>
 
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-secondary">
+                  <div class="inner">
+                    <h3 id="total_brands_box" runat="server"></h3>
+
+                    <p>Total Brands</p>
+                  </div>
+                  <div class="icon">
+                    <i class="ion ion-bag"></i>
+                  </div>
+                  <a href="Brands/index.aspx" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+              </div>
+
           <div class="col-lg-3 col-6">
             <div class="small-box bg-success">
               <div class="inner">
@@ -58,24 +73,11 @@
                 <p>Total products</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                  <i class="fas fa-barcode"></i>
               </div>
               <a href="Products/index.aspx" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>New products</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
         </div>
 </asp:Content>

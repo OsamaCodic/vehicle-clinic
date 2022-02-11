@@ -62,6 +62,8 @@ namespace vehicle_clinic.Products
                             manufacture_type_list.Items.FindByValue(obj.manufactured_type.ToString()).Selected = true;
                             availible_qty_txtbox.Text = obj.availible_quantity.ToString();
                             display_order_txtbox.Text = obj.display_order.ToString();
+
+                            preview_Image.ImageUrl = "../public/upload_files/" + obj.file_name;                         
                         }
                     }
                 }
@@ -87,27 +89,59 @@ namespace vehicle_clinic.Products
         protected void submitBtn_Click(object sender, EventArgs e)
         {
             HttpPostedFile postedImage = productImages.PostedFile;
-
             string image_name = Path.GetFileName(postedImage.FileName);
             string image_extension = Path.GetExtension(image_name);
-            
-            if ( image_extension.ToLower() == ".jpg" ||  image_extension.ToLower() == ".jpeg" || image_extension.ToLower() == ".png" || image_extension.ToLower() == ".bmp"  )
+           
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
             {
-                using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                product obj = new product();
+                   
+                if (Request.QueryString["product_id"] == null)
                 {
-                    product obj = new product();
-
-                    if (Request.QueryString["product_id"] == null)
+                    //Add product
+                    if (productImages.HasFile)
                     {
-                        //Add product
-                        DB.products.Add(obj);
+                        if (image_extension.ToLower() == ".jpg" || image_extension.ToLower() == ".jpeg" || image_extension.ToLower() == ".png" || image_extension.ToLower() == ".bmp")
+                        {
+                            obj.category_id = Convert.ToInt32(categoriesList.SelectedValue);
+                            obj.brand_title = brand_txtbox.Text;
+                            obj.product_name = product_name_txtbox.Text;
+                            obj.product_price = Convert.ToInt32(product_price_txtbox.Text);
+                            obj.product_description2 = description_txtbox.Text;
+                            obj.product_colours = product_colours_txtbox.Text;
+                            obj.product_dimensions = dimensions_txtbox.Text;
+                            obj.product_weight = Convert.ToInt32(weight_txtbox.Text);
+                            obj.product_tax = Convert.ToInt32(taxlist.SelectedValue);
+                            obj.product_discount = Convert.ToInt32(discountList.SelectedValue);
+                            obj.release_date = release_date_txtbox.Text;
+                            obj.total_sold = Convert.ToInt32(sold_txtbox.Text);
+                            obj.manufactured_type = manufacture_type_list.SelectedValue;
+                            obj.availible_quantity = Convert.ToInt32(availible_qty_txtbox.Text);
+                            obj.delived_time = delivered_time_txtbox.Text;
+                            obj.display_order = Convert.ToInt32(display_order_txtbox.Text);
+                            obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
+                            obj.file_name = image_name;
+                            productImages.SaveAs(Server.MapPath("~/public/upload_files/" + image_name));
+
+                            DB.products.Add(obj);
+                            DB.SaveChanges();
+                            Response.Redirect("index.aspx");
+                        }
+                        else
+                        {
+                            img_custom_requied.InnerHtml = "Only Images (.jpg, .jpeg, .png, .bmp) are allowed!";
+                        }
                     }
                     else
                     {
-                        //Update Product
-                        var productID = Convert.ToInt32(Request.QueryString["product_id"]);
-                        obj = DB.products.FirstOrDefault(prod => prod.product_id == productID);
+                        img_custom_requied.InnerHtml = "Image must be requied!";
                     }
+                }
+                else
+                {
+                    //Update Product
+                    var productID = Convert.ToInt32(Request.QueryString["product_id"]);
+                    obj = DB.products.FirstOrDefault(prod => prod.product_id == productID);
 
                     obj.category_id = Convert.ToInt32(categoriesList.SelectedValue);
                     obj.brand_title = brand_txtbox.Text;
@@ -125,17 +159,24 @@ namespace vehicle_clinic.Products
                     obj.availible_quantity = Convert.ToInt32(availible_qty_txtbox.Text);
                     obj.delived_time = delivered_time_txtbox.Text;
                     obj.display_order = Convert.ToInt32(display_order_txtbox.Text);
-                    obj.created_at = System.DateTime.Now.ToString("yyyy-MM-dd");
-                    obj.file_name = image_name;
-                    productImages.SaveAs(Server.MapPath("~/public/upload_files/" + image_name));
+                    obj.updated_at = System.DateTime.Now.ToString("yyyy-MM-dd");
+
+                    if (productImages.HasFile)
+                    {
+                        if (image_extension.ToLower() == ".jpg" || image_extension.ToLower() == ".jpeg" || image_extension.ToLower() == ".png" || image_extension.ToLower() == ".bmp")
+                        {
+                            obj.file_name = image_name;
+                            productImages.SaveAs(Server.MapPath("~/public/upload_files/" + image_name));
+                        }
+                        else
+                        {
+                            img_custom_requied.InnerHtml = "Only Images (.jpg, .jpeg, .png, .bmp) are allowed!";
+                        }
+                    }
 
                     DB.SaveChanges();
                     Response.Redirect("index.aspx");
                 }
-            }
-            else
-            {
-                wrong_img_msg.InnerHtml = "Only Images (.jpg, .jpeg, .png, .bmp) are allowed!";
             }
         }
     }

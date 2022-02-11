@@ -107,8 +107,26 @@
                     <a href="#" class="nav-link">
                       <i class="nav-icon ion ion-bag" aria-hidden="true"></i>
                       <p>
-                        All Products
+                        All Brands
                         <i class="fas fa-angle-left right"></i>
+                      </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="../Brands/index.aspx" class="nav-link">
+                          <i class="nav-icon far fa-circle text-secondary"></i>
+                          <p>Brands</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+
+                 <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                      <i class="nav-icon fas fa-barcode" aria-hidden="true"></i>
+                      <p>
+                        All Products
+                        <i class="fas fa-angle-left right" aria-hidden="true"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -119,7 +137,7 @@
                         </a>
                       </li>
                     </ul>
-                  </li>
+                 </li>
 
                   <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">

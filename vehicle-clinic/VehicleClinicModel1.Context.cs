@@ -30,6 +30,7 @@ namespace vehicle_clinic
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<product> products { get; set; }
+        public virtual DbSet<brand> brands { get; set; }
     
         //public virtual ObjectResult<GetUsers_Result> GetUsers()
         //{
@@ -114,6 +115,20 @@ namespace vehicle_clinic
                 new ObjectParameter("prod_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteProduct", prod_idParameter);
+        }
+    
+        public virtual int deleteBrand(Nullable<int> brand_id)
+        {
+            var brand_idParameter = brand_id.HasValue ?
+                new ObjectParameter("brand_id", brand_id) :
+                new ObjectParameter("brand_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("deleteBrand", brand_idParameter);
+        }
+    
+        public virtual ObjectResult<getBrands_Result> getBrands()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBrands_Result>("getBrands");
         }
     }
 }

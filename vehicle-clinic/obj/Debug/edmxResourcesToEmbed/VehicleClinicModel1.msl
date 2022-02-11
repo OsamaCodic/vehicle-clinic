@@ -159,5 +159,32 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="deleteProduct" FunctionName="vehicle_clinicModel.Store.deleteProduct" />
+    <EntitySetMapping Name="brands">
+      <EntityTypeMapping TypeName="vehicle_clinicModel.brand">
+        <MappingFragment StoreEntitySet="brands">
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="brand_logo" ColumnName="brand_logo" />
+          <ScalarProperty Name="brand_display_order" ColumnName="brand_display_order" />
+          <ScalarProperty Name="brand_description" ColumnName="brand_description" />
+          <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="deleteBrand" FunctionName="vehicle_clinicModel.Store.deleteBrand" />
+    <FunctionImportMapping FunctionImportName="getBrands" FunctionName="vehicle_clinicModel.Store.getBrands">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="vehicle_clinicModel.getBrands_Result">
+          <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+          <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+          <ScalarProperty Name="brand_description" ColumnName="brand_description" />
+          <ScalarProperty Name="brand_display_order" ColumnName="brand_display_order" />
+          <ScalarProperty Name="brand_logo" ColumnName="brand_logo" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

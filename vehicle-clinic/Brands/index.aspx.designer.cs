@@ -7,63 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace vehicle_clinic {
+namespace vehicle_clinic.Brands {
     
     
-    public partial class dashboard {
+    public partial class index {
         
         /// <summary>
-        /// logoutForm control.
+        /// form control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm logoutForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form;
         
         /// <summary>
-        /// logoutBtn control.
+        /// totalRows control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logoutBtn;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl totalRows;
         
         /// <summary>
-        /// total_user_box control.
+        /// createBrandBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_user_box;
+        protected global::System.Web.UI.WebControls.LinkButton createBrandBtn;
         
         /// <summary>
-        /// total_categories_box control.
+        /// brandsList_gridview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_categories_box;
-        
-        /// <summary>
-        /// total_brands_box control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_brands_box;
-        
-        /// <summary>
-        /// total_products_box control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl total_products_box;
+        protected global::System.Web.UI.WebControls.GridView brandsList_gridview;
     }
 }

@@ -180,10 +180,12 @@
                    <div class="form-group">
                       <label for="">Product Images <span class="required">*</span></label> <br/>
                       <asp:FileUpload ID="productImages" runat="server" />
+                       <asp:image id="preview_Image" width="200" runat="server" />
                        <br />
-                       <asp:requiredfieldvalidator id="product_image_required" runat="Server" errormessage="Image must be uploaded!" controltovalidate="productImages" display="Dynamic" forecolor="Red" />
+                       <%--<asp:requiredfieldvalidator id="product_image_required" runat="Server" errormessage="Image must be uploaded!" controltovalidate="productImages" display="Dynamic" forecolor="Red" />--%>
                    </div>
-                   <div class="required" id="wrong_img_msg" runat="server"></div> <br/>
+                    
+                    <div class="required" id="img_custom_requied" runat="server"></div> <br/>
 
                    <div class="card-footer">
                     <asp:Button ID="submitBtn" OnClick="submitBtn_Click" class="btn btn-primary btn-sm" Text="Save" runat="server" />

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace vehicle_clinic.Categories
+namespace vehicle_clinic.Brands
 {
     public partial class index : System.Web.UI.Page
     {
@@ -21,11 +21,11 @@ namespace vehicle_clinic.Categories
                 {
                     using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                     {
-                        var data = DB.getCategories();
-                        categoriesList_gridview.DataSource = data;
-                        categoriesList_gridview.DataBind();
+                        var data = DB.getBrands();
+                        brandsList_gridview.DataSource = data;
+                        brandsList_gridview.DataBind();
 
-                        totalRows.InnerText = "(" + DB.getCategories().Count() + ")";
+                        totalRows.InnerText = "(" + DB.getBrands().Count() + ")";
                     }
                 }
             }
@@ -34,23 +34,23 @@ namespace vehicle_clinic.Categories
                 Response.Redirect("../authorization/loginForm.aspx");
             }
         }
-        
+
         protected void deleteBtn_Click(object sender, EventArgs e)
         {
-            int category_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
+            int brand_id = Convert.ToInt32((sender as LinkButton).CommandArgument);
             //Response.Write("<script>alert(" + category_id + ");</script>");
 
             try
             {
                 using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                 {
-                    DB.deleteCategory(category_id);
+                    DB.deleteBrand(brand_id);
                     Response.Redirect("index.aspx");
                 }
             }
             catch (Exception)
             {
-                Response.Write("<script>alert('Category used in products');</script>");
+                Response.Write("<script>alert('Brand used in products');</script>");
                 //throw;
             }
         }

@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="vehicle_clinicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="brands">
+          <Key>
+            <PropertyRef Name="brand_id" />
+          </Key>
+          <Property Name="brand_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="brand_title" Type="varchar" MaxLength="50" />
+          <Property Name="brand_description" Type="varchar" MaxLength="150" />
+          <Property Name="brand_display_order" Type="int" />
+          <Property Name="brand_logo" Type="varchar" MaxLength="20" />
+          <Property Name="created_at" Type="varchar" MaxLength="50" />
+          <Property Name="updated_at" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="categories">
           <Key>
             <PropertyRef Name="category_id" />
@@ -69,6 +81,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="deleteBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="brand_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="deleteCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="category_id" Type="int" Mode="In" />
         </Function>
@@ -81,6 +96,7 @@
         <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="getBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -90,6 +106,7 @@
         <Function Name="readUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="vehicle_clinicModelStoreContainer">
+          <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
@@ -144,8 +161,13 @@
           <FunctionImport Name="getProducts" ReturnType="Collection(vehicle_clinicModel.getProducts_Result)" />
           <FunctionImport Name="products_with_Category" ReturnType="Collection(vehicle_clinicModel.products_with_Category_Result)" />
           <FunctionImport Name="deleteProduct">
-            <Parameter Name="prod_id" Mode="In" Type="Int32" />
+          <Parameter Name="prod_id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="brands" EntityType="vehicle_clinicModel.brand" />
+          <FunctionImport Name="deleteBrand">
+            <Parameter Name="brand_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getBrands" ReturnType="Collection(vehicle_clinicModel.getBrands_Result)" />
         </EntityContainer>
         <ComplexType Name="GetUsers_Result">
           <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -305,6 +327,27 @@
           <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
           <Property Type="String" Name="product_description2" Nullable="true" MaxLength="150" />
           <Property Type="String" Name="category_title" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <EntityType Name="brand">
+          <Key>
+            <PropertyRef Name="brand_id" />
+          </Key>
+          <Property Name="brand_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="brand_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="brand_description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="brand_display_order" Type="Int32" />
+          <Property Name="brand_logo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="updated_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="getBrands_Result">
+          <Property Type="Int32" Name="brand_id" Nullable="false" />
+          <Property Type="String" Name="brand_title" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="brand_description" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="brand_display_order" Nullable="true" />
+          <Property Type="String" Name="brand_logo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -470,6 +513,33 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="deleteProduct" FunctionName="vehicle_clinicModel.Store.deleteProduct" />
+          <EntitySetMapping Name="brands">
+            <EntityTypeMapping TypeName="vehicle_clinicModel.brand">
+              <MappingFragment StoreEntitySet="brands">
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="brand_logo" ColumnName="brand_logo" />
+                <ScalarProperty Name="brand_display_order" ColumnName="brand_display_order" />
+                <ScalarProperty Name="brand_description" ColumnName="brand_description" />
+                <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="deleteBrand" FunctionName="vehicle_clinicModel.Store.deleteBrand" />
+          <FunctionImportMapping FunctionImportName="getBrands" FunctionName="vehicle_clinicModel.Store.getBrands">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="vehicle_clinicModel.getBrands_Result">
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+                <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+                <ScalarProperty Name="brand_description" ColumnName="brand_description" />
+                <ScalarProperty Name="brand_display_order" ColumnName="brand_display_order" />
+                <ScalarProperty Name="brand_logo" ColumnName="brand_logo" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -26,15 +26,13 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <asp:GridView ID="productsList_gridview" BorderStyle="None" GridLines="None" HeaderStyle-BackColor="#343a40" HeaderStyle-ForeColor="#c2c7d0" HeaderStyle-BorderColor="Black" runat="server" CssClass="table table-striped table-hover tableScroll" AutoGenerateColumns="false">
+                  <asp:GridView ID="productsList_gridview" BorderStyle="None" GridLines="None" HeaderStyle-BackColor="#343a40" HeaderStyle-ForeColor="#c2c7d0" HeaderStyle-BorderColor="Black" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false">
                       <Columns>
                         <asp:BoundField DataField="category_title" HeaderText="Category" />
                         <asp:BoundField DataField="brand_title" HeaderText="Brand" />
                         <asp:BoundField DataField="product_name" HeaderText="Product" />
                         <asp:BoundField DataField="product_price" HeaderText="Price" />
                         <asp:BoundField DataField="product_colours" HeaderText="Colours" />
-                        <asp:BoundField DataField="product_dimensions" HeaderText="Dimensions" />
-                        <asp:BoundField DataField="product_weight" HeaderText="Weight" />
                         <asp:BoundField DataField="release_date" HeaderText="Release Date" />
                         <asp:BoundField DataField="display_order" HeaderText="Display Order" />
                         <asp:TemplateField HeaderText="Images">

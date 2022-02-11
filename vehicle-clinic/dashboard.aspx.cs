@@ -23,6 +23,7 @@ namespace vehicle_clinic
                     {
                         total_user_box.InnerText = "(" + DB.readUsers().Count() + ")";
                         total_categories_box.InnerText = "(" + DB.getCategories().Count() + ")";
+                        total_brands_box.InnerText = "(" + DB.getBrands().Count() + ")";
                         total_products_box.InnerText = "(" + DB.getProducts().Count() + ")";
                     }
                 }
