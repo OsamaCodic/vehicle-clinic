@@ -130,5 +130,20 @@ namespace vehicle_clinic
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getBrands_Result>("getBrands");
         }
+    
+        public virtual ObjectResult<loadBrands_Result> loadBrands()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<loadBrands_Result>("loadBrands");
+        }
+    
+        public virtual ObjectResult<products_with_category_brand_Result> products_with_category_brand()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<products_with_category_brand_Result>("products_with_category_brand");
+        }
+    
+        public virtual ObjectResult<products_with_Category_and_Brand_Result> products_with_Category_and_Brand()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<products_with_Category_and_Brand_Result>("products_with_Category_and_Brand");
+        }
     }
 }

@@ -49,22 +49,22 @@ namespace vehicle_clinic.Products {
         protected global::System.Web.UI.WebControls.DropDownList categoriesList;
         
         /// <summary>
-        /// role_required control.
+        /// categories_required control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator role_required;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator categories_required;
         
         /// <summary>
-        /// brand_txtbox control.
+        /// brandsList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox brand_txtbox;
+        protected global::System.Web.UI.WebControls.DropDownList brandsList;
         
         /// <summary>
         /// brand_required control.

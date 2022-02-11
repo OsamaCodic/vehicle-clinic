@@ -244,6 +244,9 @@
     <Compile Include="layouts\app_layout.Master.designer.cs">
       <DependentUpon>app_layout.Master</DependentUpon>
     </Compile>
+    <Compile Include="loadBrands_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="product.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
@@ -260,6 +263,12 @@
     </Compile>
     <Compile Include="Products\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="products_with_Category_and_Brand_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="products_with_category_brand_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="products_with_Category_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>

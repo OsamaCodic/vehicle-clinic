@@ -10,9 +10,8 @@
 namespace vehicle_clinic
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class product
+    public partial class products_with_category_brand_Result
     {
         public int product_id { get; set; }
         public Nullable<int> category_id { get; set; }
@@ -38,7 +37,7 @@ namespace vehicle_clinic
         public byte[] file_data { get; set; }
         public string product_description2 { get; set; }
         public Nullable<int> brand_id { get; set; }
-    
-        public virtual category category { get; set; }
+        public string category_title { get; set; }
+        public string brand_title1 { get; set; }
     }
 }

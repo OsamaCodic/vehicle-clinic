@@ -29,7 +29,7 @@
                                     <asp:ListItem Text="--Select--" Value="0" />
                                 </asp:DropDownList>
 
-                                <asp:requiredfieldvalidator id="role_required" runat="Server" errormessage="Please select any role!" controltovalidate="categoriesList" InitialValue="0" SetFocusOnError="true" display="Dynamic" forecolor="Red" />
+                                <asp:requiredfieldvalidator id="categories_required" runat="Server" errormessage="Please select any role!" controltovalidate="categoriesList" InitialValue="0" SetFocusOnError="true" display="Dynamic" forecolor="Red" />
                             </div>
                         </div>
                     </div>
@@ -37,9 +37,11 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="">Brand title<span class="required">*</span></label>
-                                <asp:TextBox ID="brand_txtbox" placeholder="Enter product brand" class="form-control" runat="server"/>
-                                <asp:requiredfieldvalidator id="brand_required" runat="Server" errormessage="Brand of product is required!" controltovalidate="brand_txtbox" display="Dynamic" forecolor="Red" />
+                              <label for="">Select Product Brand <span class="required">*</span></label>
+                                <asp:DropDownList ID="brandsList" runat="server" class="form-control" ValidationGroup="g1">
+                                    <asp:ListItem Text="--Select--" Value="0" />
+                                </asp:DropDownList>
+                                <asp:requiredfieldvalidator id="brand_required" runat="Server" errormessage="Please select any brand!" controltovalidate="brandsList" InitialValue="0" SetFocusOnError="true" display="Dynamic" forecolor="Red" />
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -182,7 +184,6 @@
                       <asp:FileUpload ID="productImages" runat="server" />
                        <asp:image id="preview_Image" width="200" runat="server" />
                        <br />
-                       <%--<asp:requiredfieldvalidator id="product_image_required" runat="Server" errormessage="Image must be uploaded!" controltovalidate="productImages" display="Dynamic" forecolor="Red" />--%>
                    </div>
                     
                     <div class="required" id="img_custom_requied" runat="server"></div> <br/>

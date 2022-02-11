@@ -21,11 +21,11 @@ namespace vehicle_clinic.Products
                 {
                     using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                     {
-                        var data = DB.products_with_Category();
+                        var data = DB.products_with_Category_and_Brand();
                         productsList_gridview.DataSource = data;
                         productsList_gridview.DataBind();
 
-                        totalRows.InnerText = "(" + DB.products_with_Category().Count() + ")";
+                        totalRows.InnerText = "(" + DB.products_with_Category_and_Brand().Count() + ")";
                     }
                 }
             }

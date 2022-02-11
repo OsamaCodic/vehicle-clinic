@@ -23,6 +23,7 @@ namespace vehicle_clinic.Products
                     if (IsPostBack) return;
 
                     loadCateogries();
+                    loadBrands();
 
                     if (Request.QueryString["product_id"] == null)
                     {
@@ -47,7 +48,7 @@ namespace vehicle_clinic.Products
                             var productID = Convert.ToInt32(Request.QueryString["product_id"]);
                             product obj = DB.products.FirstOrDefault(prod => prod.product_id == productID);
                             categoriesList.Items.FindByValue(obj.category_id.ToString()).Selected = true;
-                            brand_txtbox.Text = obj.brand_title;
+                            brandsList.Items.FindByValue(obj.brand_title.ToString()).Selected = true;
                             product_name_txtbox.Text = obj.product_name;
                             product_price_txtbox.Text = obj.product_price.ToString();
                             description_txtbox.Text = obj.product_description2;
@@ -86,6 +87,18 @@ namespace vehicle_clinic.Products
             }
         }
 
+        private void loadBrands()
+        {
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            {
+                var data = DB.loadBrands();
+                brandsList.DataSource = data;
+                brandsList.DataTextField = "brand_title";
+                brandsList.DataValueField = "brand_id";
+                brandsList.DataBind();
+            }
+        }
+
         protected void submitBtn_Click(object sender, EventArgs e)
         {
             HttpPostedFile postedImage = productImages.PostedFile;
@@ -104,7 +117,7 @@ namespace vehicle_clinic.Products
                         if (image_extension.ToLower() == ".jpg" || image_extension.ToLower() == ".jpeg" || image_extension.ToLower() == ".png" || image_extension.ToLower() == ".bmp")
                         {
                             obj.category_id = Convert.ToInt32(categoriesList.SelectedValue);
-                            obj.brand_title = brand_txtbox.Text;
+                            obj.brand_title = brandsList.SelectedValue;
                             obj.product_name = product_name_txtbox.Text;
                             obj.product_price = Convert.ToInt32(product_price_txtbox.Text);
                             obj.product_description2 = description_txtbox.Text;
@@ -144,7 +157,7 @@ namespace vehicle_clinic.Products
                     obj = DB.products.FirstOrDefault(prod => prod.product_id == productID);
 
                     obj.category_id = Convert.ToInt32(categoriesList.SelectedValue);
-                    obj.brand_title = brand_txtbox.Text;
+                    obj.brand_title = brandsList.SelectedValue;
                     obj.product_name = product_name_txtbox.Text;
                     obj.product_price = Convert.ToInt32(product_price_txtbox.Text);
                     obj.product_description2 = description_txtbox.Text;
