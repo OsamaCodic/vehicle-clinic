@@ -1,0 +1,89 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="frontend_layout.master.cs" Inherits="vehicle_clinic.layouts.frontend_layout" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link rel="stylesheet" href="../public/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/bootstrap/css/bootstrap.min.js">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <style>
+        .FrontSidebar{
+            background:red;
+        }
+        .alert-success{
+            margin-top: 20px;
+        }
+         .errClass
+        {
+            color: red;
+            background: #ffcaca;
+            padding: 17px;
+            margin: 12px;
+            border-radius: 12px;
+            display:none;
+        }
+        .required{
+            color:red;
+        }
+        .detailCard{
+            border-radius: 12px;
+            background: #f1f6ff;
+            box-shadow: 0px 0px 20px 0px #cbd8ff;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><b>Products</b><small>Clinic</small></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="../products/index.aspx">Products</a></li>
+          </ul>
+            <div class="navbar-form navbar-right">
+                <a href="../login/front_logout.aspx" class="btn btn-danger btn-sm pull-right">Logout</a>
+            </div>
+              
+         <%-- <form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>--%>
+
+            
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -12,6 +12,14 @@
     <Property Name="created_at" Type="varchar" MaxLength="50" />
     <Property Name="updated_at" Type="varchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+  </EntityType>
   <EntityType Name="categories">
     <Key>
       <PropertyRef Name="category_id" />
@@ -52,6 +60,22 @@
     <Property Name="product_description2" Type="varchar" MaxLength="150" />
     <Property Name="brand_id" Type="int" />
   </EntityType>
+  <EntityType Name="purchaseTbl">
+    <Key>
+      <PropertyRef Name="purchaseTbl_id" />
+    </Key>
+    <Property Name="purchaseTbl_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" />
+    <Property Name="second_name" Type="varchar" MaxLength="50" />
+    <Property Name="country" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="150" />
+    <Property Name="email" Type="varbinary" MaxLength="50" />
+    <Property Name="order_note" Type="varbinary" MaxLength="150" />
+    <Property Name="contact" Type="int" />
+    <Property Name="email2" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="users">
     <Key>
       <PropertyRef Name="user_id" />
@@ -65,6 +89,18 @@
     <Property Name="email" Type="varchar" MaxLength="50" />
     <Property Name="password" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_cart_products">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="cart" Type="Self.cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="cart">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_products_categories">
     <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
     <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -77,6 +113,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="cart_withProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="deleteBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="brand_id" Type="int" Mode="In" />
   </Function>
@@ -92,7 +129,10 @@
   <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="user_id" Type="int" Mode="In" />
   </Function>
+  <Function Name="discardCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getCart2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -104,11 +144,18 @@
   <Function Name="products_with_category_brand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="readUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="viewCartlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="vehicle_clinicModelStoreContainer">
     <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchaseTbl" EntityType="Self.purchaseTbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_cart_products" Association="Self.FK_cart_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="cart" EntitySet="cart" />
+    </AssociationSet>
     <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
       <End Role="categories" EntitySet="categories" />
       <End Role="products" EntitySet="products" />

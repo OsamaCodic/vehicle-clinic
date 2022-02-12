@@ -17,6 +17,14 @@
           <Property Name="created_at" Type="varchar" MaxLength="50" />
           <Property Name="updated_at" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
         <EntityType Name="categories">
           <Key>
             <PropertyRef Name="category_id" />
@@ -57,6 +65,22 @@
           <Property Name="product_description2" Type="varchar" MaxLength="150" />
           <Property Name="brand_id" Type="int" />
         </EntityType>
+        <EntityType Name="purchaseTbl">
+          <Key>
+            <PropertyRef Name="purchaseTbl_id" />
+          </Key>
+          <Property Name="purchaseTbl_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" />
+          <Property Name="second_name" Type="varchar" MaxLength="50" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="150" />
+          <Property Name="email" Type="varbinary" MaxLength="50" />
+          <Property Name="order_note" Type="varbinary" MaxLength="150" />
+          <Property Name="contact" Type="int" />
+          <Property Name="email2" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="user_id" />
@@ -70,6 +94,18 @@
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_cart_products">
+          <End Role="products" Type="Self.products" Multiplicity="0..1" />
+          <End Role="cart" Type="Self.cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_products_categories">
           <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
           <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -82,6 +118,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="cart_withProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="deleteBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="brand_id" Type="int" Mode="In" />
         </Function>
@@ -97,7 +134,10 @@
         <Function Name="deleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="user_id" Type="int" Mode="In" />
         </Function>
+        <Function Name="discardCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="getCart2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -109,11 +149,18 @@
         <Function Name="products_with_category_brand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="readUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="viewCartlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="vehicle_clinicModelStoreContainer">
           <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="purchaseTbl" EntityType="Self.purchaseTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_cart_products" Association="Self.FK_cart_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="cart" EntitySet="cart" />
+          </AssociationSet>
           <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
             <End Role="categories" EntitySet="categories" />
             <End Role="products" EntitySet="products" />
@@ -175,6 +222,17 @@
           <FunctionImport Name="loadBrands" ReturnType="Collection(vehicle_clinicModel.loadBrands_Result)" />
           <FunctionImport Name="products_with_category_brand" ReturnType="Collection(vehicle_clinicModel.products_with_category_brand_Result)" />
           <FunctionImport Name="products_with_Category_and_Brand" ReturnType="Collection(vehicle_clinicModel.products_with_Category_and_Brand_Result)" />
+          <EntitySet Name="carts" EntityType="vehicle_clinicModel.cart" />
+          <FunctionImport Name="viewCartlist" ReturnType="Collection(vehicle_clinicModel.viewCartlist_Result)" />
+          <AssociationSet Name="FK_cart_products" Association="vehicle_clinicModel.FK_cart_products">
+            <End Role="product" EntitySet="products" />
+            <End Role="cart" EntitySet="carts" />
+          </AssociationSet>
+          <FunctionImport Name="getCart" ReturnType="Collection(vehicle_clinicModel.getCart_Result)" />
+          <FunctionImport Name="getCart2" ReturnType="Collection(vehicle_clinicModel.getCart2_Result)" />
+          <FunctionImport Name="cart_withProducts" ReturnType="Collection(vehicle_clinicModel.cart_withProducts_Result)" />
+          <EntitySet Name="purchaseTbls" EntityType="vehicle_clinicModel.purchaseTbl" />
+          <FunctionImport Name="discardCart" />
         </EntityContainer>
         <ComplexType Name="GetUsers_Result">
           <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -273,6 +331,7 @@
           <Property Name="file_data" Type="Binary" MaxLength="500" FixedLength="false" />
           <Property Name="product_description2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="brand_id" Type="Int32" />
+          <NavigationProperty Name="carts" Relationship="vehicle_clinicModel.FK_cart_products" FromRole="product" ToRole="cart" />
         </EntityType>
         <Association Name="FK_products_categories">
           <End Type="vehicle_clinicModel.category" Role="category" Multiplicity="0..1" />
@@ -422,6 +481,137 @@
           <Property Type="String" Name="category_title" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="brand_name" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <EntityType Name="cart">
+          <Key>
+            <PropertyRef Name="cart_id" />
+          </Key>
+          <Property Name="cart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="product" Relationship="vehicle_clinicModel.FK_cart_products" FromRole="cart" ToRole="product" />
+        </EntityType>
+        <ComplexType Name="viewCartlist_Result">
+          <Property Type="Int32" Name="cart_id" Nullable="false" />
+          <Property Type="Int32" Name="product_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="Int32" Name="product_id1" Nullable="false" />
+          <Property Type="Int32" Name="category_id" Nullable="true" />
+          <Property Type="String" Name="brand_title" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="product_name" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="product_price" Nullable="true" />
+          <Property Type="Binary" Name="product_description" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="product_colours" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="product_dimensions" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="product_weight" Nullable="true" />
+          <Property Type="Int32" Name="product_tax" Nullable="true" />
+          <Property Type="Int32" Name="product_discount" Nullable="true" />
+          <Property Type="String" Name="release_date" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="total_sold" Nullable="true" />
+          <Property Type="String" Name="manufactured_type" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="availible_quantity" Nullable="true" />
+          <Property Type="String" Name="delived_time" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="display_order" Nullable="true" />
+          <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="file_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="file_size" Nullable="true" />
+          <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="product_description2" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="brand_id" Nullable="true" />
+          <Property Type="String" Name="brand_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <Association Name="FK_cart_products">
+          <End Type="vehicle_clinicModel.product" Role="product" Multiplicity="0..1" />
+          <End Type="vehicle_clinicModel.cart" Role="cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="cart">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="getCart_Result">
+          <Property Type="Int32" Name="cart_id" Nullable="false" />
+          <Property Type="Int32" Name="product_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getCart2_Result">
+          <Property Type="Int32" Name="cart_id" Nullable="false" />
+          <Property Type="Int32" Name="product_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="Int32" Name="product_id1" Nullable="false" />
+          <Property Type="Int32" Name="category_id" Nullable="true" />
+          <Property Type="String" Name="brand_title" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="product_name" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="product_price" Nullable="true" />
+          <Property Type="Binary" Name="product_description" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="product_colours" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="product_dimensions" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="product_weight" Nullable="true" />
+          <Property Type="Int32" Name="product_tax" Nullable="true" />
+          <Property Type="Int32" Name="product_discount" Nullable="true" />
+          <Property Type="String" Name="release_date" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="total_sold" Nullable="true" />
+          <Property Type="String" Name="manufactured_type" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="availible_quantity" Nullable="true" />
+          <Property Type="String" Name="delived_time" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="display_order" Nullable="true" />
+          <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="file_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="file_size" Nullable="true" />
+          <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="product_description2" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="brand_id" Nullable="true" />
+          <Property Type="String" Name="brand_name" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="cart_withProducts_Result">
+          <Property Type="Int32" Name="cart_id" Nullable="false" />
+          <Property Type="Int32" Name="product_id" Nullable="true" />
+          <Property Type="Int32" Name="user_id" Nullable="true" />
+          <Property Type="Int32" Name="product_id1" Nullable="false" />
+          <Property Type="Int32" Name="category_id" Nullable="true" />
+          <Property Type="String" Name="brand_title" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="product_name" Nullable="true" MaxLength="30" />
+          <Property Type="Double" Name="product_price" Nullable="true" />
+          <Property Type="Binary" Name="product_description" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="product_colours" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="product_dimensions" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="product_weight" Nullable="true" />
+          <Property Type="Int32" Name="product_tax" Nullable="true" />
+          <Property Type="Int32" Name="product_discount" Nullable="true" />
+          <Property Type="String" Name="release_date" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="total_sold" Nullable="true" />
+          <Property Type="String" Name="manufactured_type" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="availible_quantity" Nullable="true" />
+          <Property Type="String" Name="delived_time" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="display_order" Nullable="true" />
+          <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="file_name" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="file_size" Nullable="true" />
+          <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="product_description2" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="brand_id" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="purchaseTbl">
+          <Key>
+            <PropertyRef Name="purchaseTbl_id" />
+          </Key>
+          <Property Name="purchaseTbl_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="second_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="Binary" MaxLength="50" FixedLength="false" />
+          <Property Name="order_note" Type="Binary" MaxLength="150" FixedLength="false" />
+          <Property Name="contact" Type="Int32" />
+          <Property Name="email2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -691,6 +881,143 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="carts">
+            <EntityTypeMapping TypeName="vehicle_clinicModel.cart">
+              <MappingFragment StoreEntitySet="cart">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="viewCartlist" FunctionName="vehicle_clinicModel.Store.viewCartlist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="vehicle_clinicModel.viewCartlist_Result">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id1" ColumnName="product_id1" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_description" ColumnName="product_description" />
+                <ScalarProperty Name="product_colours" ColumnName="product_colours" />
+                <ScalarProperty Name="product_dimensions" ColumnName="product_dimensions" />
+                <ScalarProperty Name="product_weight" ColumnName="product_weight" />
+                <ScalarProperty Name="product_tax" ColumnName="product_tax" />
+                <ScalarProperty Name="product_discount" ColumnName="product_discount" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="total_sold" ColumnName="total_sold" />
+                <ScalarProperty Name="manufactured_type" ColumnName="manufactured_type" />
+                <ScalarProperty Name="availible_quantity" ColumnName="availible_quantity" />
+                <ScalarProperty Name="delived_time" ColumnName="delived_time" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="file_size" ColumnName="file_size" />
+                <ScalarProperty Name="file_data" ColumnName="file_data" />
+                <ScalarProperty Name="product_description2" ColumnName="product_description2" />
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+                <ScalarProperty Name="brand_name" ColumnName="brand_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCart" FunctionName="vehicle_clinicModel.Store.getCart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="vehicle_clinicModel.getCart_Result">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getCart2" FunctionName="vehicle_clinicModel.Store.getCart2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="vehicle_clinicModel.getCart2_Result">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id1" ColumnName="product_id1" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_description" ColumnName="product_description" />
+                <ScalarProperty Name="product_colours" ColumnName="product_colours" />
+                <ScalarProperty Name="product_dimensions" ColumnName="product_dimensions" />
+                <ScalarProperty Name="product_weight" ColumnName="product_weight" />
+                <ScalarProperty Name="product_tax" ColumnName="product_tax" />
+                <ScalarProperty Name="product_discount" ColumnName="product_discount" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="total_sold" ColumnName="total_sold" />
+                <ScalarProperty Name="manufactured_type" ColumnName="manufactured_type" />
+                <ScalarProperty Name="availible_quantity" ColumnName="availible_quantity" />
+                <ScalarProperty Name="delived_time" ColumnName="delived_time" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="file_size" ColumnName="file_size" />
+                <ScalarProperty Name="file_data" ColumnName="file_data" />
+                <ScalarProperty Name="product_description2" ColumnName="product_description2" />
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+                <ScalarProperty Name="brand_name" ColumnName="brand_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="cart_withProducts" FunctionName="vehicle_clinicModel.Store.cart_withProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="vehicle_clinicModel.cart_withProducts_Result">
+                <ScalarProperty Name="cart_id" ColumnName="cart_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id1" ColumnName="product_id1" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="brand_title" ColumnName="brand_title" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_description" ColumnName="product_description" />
+                <ScalarProperty Name="product_colours" ColumnName="product_colours" />
+                <ScalarProperty Name="product_dimensions" ColumnName="product_dimensions" />
+                <ScalarProperty Name="product_weight" ColumnName="product_weight" />
+                <ScalarProperty Name="product_tax" ColumnName="product_tax" />
+                <ScalarProperty Name="product_discount" ColumnName="product_discount" />
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
+                <ScalarProperty Name="total_sold" ColumnName="total_sold" />
+                <ScalarProperty Name="manufactured_type" ColumnName="manufactured_type" />
+                <ScalarProperty Name="availible_quantity" ColumnName="availible_quantity" />
+                <ScalarProperty Name="delived_time" ColumnName="delived_time" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="file_name" ColumnName="file_name" />
+                <ScalarProperty Name="file_size" ColumnName="file_size" />
+                <ScalarProperty Name="file_data" ColumnName="file_data" />
+                <ScalarProperty Name="product_description2" ColumnName="product_description2" />
+                <ScalarProperty Name="brand_id" ColumnName="brand_id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="purchaseTbls">
+            <EntityTypeMapping TypeName="vehicle_clinicModel.purchaseTbl">
+              <MappingFragment StoreEntitySet="purchaseTbl">
+                <ScalarProperty Name="email2" ColumnName="email2" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="order_note" ColumnName="order_note" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="second_name" ColumnName="second_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="purchaseTbl_id" ColumnName="purchaseTbl_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="discardCart" FunctionName="vehicle_clinicModel.Store.discardCart" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

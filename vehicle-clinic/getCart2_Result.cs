@@ -10,17 +10,13 @@
 namespace vehicle_clinic
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class product
+    public partial class getCart2_Result
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public product()
-        {
-            this.carts = new HashSet<cart>();
-        }
-    
-        public int product_id { get; set; }
+        public int cart_id { get; set; }
+        public Nullable<int> product_id { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public int product_id1 { get; set; }
         public Nullable<int> category_id { get; set; }
         public string brand_title { get; set; }
         public string product_name { get; set; }
@@ -44,9 +40,6 @@ namespace vehicle_clinic
         public byte[] file_data { get; set; }
         public string product_description2 { get; set; }
         public Nullable<int> brand_id { get; set; }
-    
-        public virtual category category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cart> carts { get; set; }
+        public string brand_name { get; set; }
     }
 }

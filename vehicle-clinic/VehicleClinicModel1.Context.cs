@@ -31,6 +31,8 @@ namespace vehicle_clinic
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<product> products { get; set; }
         public virtual DbSet<brand> brands { get; set; }
+        public virtual DbSet<cart> carts { get; set; }
+        public virtual DbSet<purchaseTbl> purchaseTbls { get; set; }
     
         //public virtual ObjectResult<GetUsers_Result> GetUsers()
         //{
@@ -144,6 +146,31 @@ namespace vehicle_clinic
         public virtual ObjectResult<products_with_Category_and_Brand_Result> products_with_Category_and_Brand()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<products_with_Category_and_Brand_Result>("products_with_Category_and_Brand");
+        }
+    
+        public virtual ObjectResult<viewCartlist_Result> viewCartlist()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<viewCartlist_Result>("viewCartlist");
+        }
+    
+        public virtual ObjectResult<getCart_Result> getCart()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCart_Result>("getCart");
+        }
+    
+        public virtual ObjectResult<getCart2_Result> getCart2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCart2_Result>("getCart2");
+        }
+    
+        public virtual ObjectResult<cart_withProducts_Result> cart_withProducts()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cart_withProducts_Result>("cart_withProducts");
+        }
+    
+        public virtual int discardCart()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("discardCart");
         }
     }
 }

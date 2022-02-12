@@ -121,7 +121,14 @@
     <Content Include="Categories\form.aspx" />
     <Content Include="Categories\index.aspx" />
     <Content Include="dashboard.aspx" />
-    <Content Include="Frontend\products\products.aspx" />
+    <Content Include="Frontend\login\front_login.aspx" />
+    <Content Include="Frontend\login\front_logout.aspx" />
+    <Content Include="Frontend\login\registerUser.aspx" />
+    <Content Include="Frontend\products\cart.aspx" />
+    <Content Include="Frontend\products\checkout.aspx" />
+    <Content Include="Frontend\products\details.aspx" />
+    <Content Include="Frontend\products\index.aspx" />
+    <Content Include="Frontend\products\Thanks.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -138,6 +145,7 @@
       <DependentUpon>VehicleClinicModel1.edmx</DependentUpon>
     </Content>
     <Content Include="layouts\app_layout.Master" />
+    <Content Include="layouts\frontend_layout.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -185,6 +193,12 @@
     <Compile Include="Brands\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="cart.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cart_withProducts_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Categories\form.aspx.cs">
       <DependentUpon>form.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,14 +223,69 @@
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Frontend\products\products.aspx.cs">
-      <DependentUpon>products.aspx</DependentUpon>
+    <Compile Include="Frontend\login\front_login.aspx.cs">
+      <DependentUpon>front_login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Frontend\products\products.aspx.designer.cs">
-      <DependentUpon>products.aspx</DependentUpon>
+    <Compile Include="Frontend\login\front_login.aspx.designer.cs">
+      <DependentUpon>front_login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\login\front_logout.aspx.cs">
+      <DependentUpon>front_logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\login\front_logout.aspx.designer.cs">
+      <DependentUpon>front_logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\login\registerUser.aspx.cs">
+      <DependentUpon>registerUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\login\registerUser.aspx.designer.cs">
+      <DependentUpon>registerUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\products\cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\products\cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\products\checkout.aspx.cs">
+      <DependentUpon>checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\products\checkout.aspx.designer.cs">
+      <DependentUpon>checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\products\details.aspx.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\products\details.aspx.designer.cs">
+      <DependentUpon>details.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\products\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\products\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\products\Thanks.aspx.cs">
+      <DependentUpon>Thanks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Frontend\products\Thanks.aspx.designer.cs">
+      <DependentUpon>Thanks.aspx</DependentUpon>
     </Compile>
     <Compile Include="getBrands_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getCart2_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getCart_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="getCategories_Result.cs">
@@ -243,6 +312,13 @@
     </Compile>
     <Compile Include="layouts\app_layout.Master.designer.cs">
       <DependentUpon>app_layout.Master</DependentUpon>
+    </Compile>
+    <Compile Include="layouts\frontend_layout.Master.cs">
+      <DependentUpon>frontend_layout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="layouts\frontend_layout.Master.designer.cs">
+      <DependentUpon>frontend_layout.Master</DependentUpon>
     </Compile>
     <Compile Include="loadBrands_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
@@ -274,6 +350,9 @@
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="purchaseTbl.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="readUsers_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
@@ -309,6 +388,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleClinicModel1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="viewCartlist_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -316,6 +398,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public\adminlLTE-template\" />
+    <Folder Include="public\bootstrap\css\" />
+    <Folder Include="public\bootstrap\fonts\" />
+    <Folder Include="public\bootstrap\js\" />
     <Folder Include="public\upload_files\" />
   </ItemGroup>
   <PropertyGroup>

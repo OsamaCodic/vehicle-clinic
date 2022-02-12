@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace vehicle_clinic.Frontend {
+namespace vehicle_clinic.Frontend.products {
     
     
-    public partial class products {
+    public partial class Thanks {
         
         /// <summary>
-        /// productsForm control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm productsForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// productsRepeater control.
+        /// thanksUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater productsRepeater;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl thanksUser;
     }
 }
