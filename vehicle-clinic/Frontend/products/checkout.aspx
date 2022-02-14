@@ -12,6 +12,14 @@
                     <div runat="server" id="errorMessage" class="errClass"></div>
 
                     <div class="row">
+                        <div class="col-md-12">
+                            <asp:HyperLink NavigateUrl="~/Frontend/products/cart.aspx" class="btn btn-info btn-sm" Text="View Cart" runat="server" />
+                            <asp:HyperLink NavigateUrl="~/Frontend/products/index.aspx" class="btn btn-warning btn-sm" Text="Continue Shop" runat="server" />
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">First Name <span class="required">*</span></label>

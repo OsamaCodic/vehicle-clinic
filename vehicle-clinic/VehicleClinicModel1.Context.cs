@@ -33,6 +33,8 @@ namespace vehicle_clinic
         public virtual DbSet<brand> brands { get; set; }
         public virtual DbSet<cart> carts { get; set; }
         public virtual DbSet<purchaseTbl> purchaseTbls { get; set; }
+        public virtual DbSet<cartTable2> cartTable2 { get; set; }
+        public virtual DbSet<cartTable> cartTables { get; set; }
     
         //public virtual ObjectResult<GetUsers_Result> GetUsers()
         //{
@@ -171,6 +173,34 @@ namespace vehicle_clinic
         public virtual int discardCart()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("discardCart");
+        }
+    
+        public virtual int emptyCartTable(Nullable<int> user_id)
+        {
+            var user_idParameter = user_id.HasValue ?
+                new ObjectParameter("user_id", user_id) :
+                new ObjectParameter("user_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("emptyCartTable", user_idParameter);
+        }
+    
+        public virtual ObjectResult<getCartTable2_Result> getCartTable2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCartTable2_Result>("getCartTable2");
+        }
+    
+        public virtual ObjectResult<read_cartTable2_Result> read_cartTable2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<read_cartTable2_Result>("read_cartTable2");
+        }
+    
+        public virtual ObjectResult<user_cart_Result> user_cart(Nullable<int> userID)
+        {
+            var userIDParameter = userID.HasValue ?
+                new ObjectParameter("userID", userID) :
+                new ObjectParameter("userID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<user_cart_Result>("user_cart", userIDParameter);
         }
     }
 }

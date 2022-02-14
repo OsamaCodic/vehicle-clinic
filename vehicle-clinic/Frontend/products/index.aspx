@@ -25,7 +25,8 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <asp:HyperLink ID="buyBtn" runat="server" Class="btn btn-info btn-sm" NavigateUrl='<%# "~/Frontend/products/details.aspx?product_id=" + Eval("product_id") %>'>Buy</asp:HyperLink>
+                                                    <%--<asp:HyperLink ID="buyBtn" runat="server" Class="btn btn-info btn-sm" NavigateUrl='<%# "~/Frontend/products/details.aspx?product_id=" + Eval("product_id") %>'>Buy</asp:HyperLink>--%>
+                                                    <asp:LinkButton Text="Buy" ID="BuyProductBtn" Class="btn btn-info btn-sm" OnClick="BuyProductBtn_Click" CommandArgument='<%# Eval("product_id") %>' runat="server" />
                                                 </td>
                                             </tr>
                                         </table>

@@ -35,7 +35,7 @@ namespace vehicle_clinic.Frontend.buy_product
 
                             int productID = Convert.ToInt32(Request.QueryString["product_id"]);
                             
-                            //Product
+                            //Show Product Details
                             product p = DB.products.FirstOrDefault(prod => prod.product_id == productID); //Get Product
                             preview_Image.ImageUrl = "../../public/upload_files/" + p.file_name;
                             name_render.InnerHtml = p.product_name;

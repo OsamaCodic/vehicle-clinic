@@ -139,6 +139,7 @@
     </EntityDeploy>
     <Content Include="Products\form.aspx" />
     <Content Include="Products\index.aspx" />
+    <Content Include="test_email.aspx" />
     <Content Include="Users\form.aspx" />
     <Content Include="Users\index.aspx" />
     <Content Include="VehicleClinicModel1.edmx.diagram">
@@ -194,6 +195,12 @@
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="cart.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cartTable.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="cartTable2.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="cart_withProducts_Result.cs">
@@ -285,6 +292,9 @@
     <Compile Include="getCart2_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="getCartTable2_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
     <Compile Include="getCart_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
@@ -356,6 +366,16 @@
     <Compile Include="readUsers_Result.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
+    <Compile Include="read_cartTable2_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="test_email.aspx.cs">
+      <DependentUpon>test_email.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test_email.aspx.designer.cs">
+      <DependentUpon>test_email.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user.cs">
       <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
@@ -372,6 +392,9 @@
     </Compile>
     <Compile Include="Users\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user_cart_Result.cs">
+      <DependentUpon>VehicleClinicModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="VehicleClinicModel1.Context.cs">
       <AutoGen>True</AutoGen>

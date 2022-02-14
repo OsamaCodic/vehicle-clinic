@@ -14,6 +14,12 @@ namespace vehicle_clinic
     
     public partial class user
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public user()
+        {
+            this.cartTable2 = new HashSet<cartTable2>();
+        }
+    
         public int user_id { get; set; }
         public string first_name { get; set; }
         public string second_name { get; set; }
@@ -22,5 +28,8 @@ namespace vehicle_clinic
         public string created_at { get; set; }
         public string email { get; set; }
         public string password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cartTable2> cartTable2 { get; set; }
     }
 }

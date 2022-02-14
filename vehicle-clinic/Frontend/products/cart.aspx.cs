@@ -23,7 +23,8 @@ namespace vehicle_clinic.Frontend.products
                 {
                     using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                     {
-                        var data = DB.getCart();
+                        int userID = Convert.ToInt32(cookie["front_userID"]);
+                        var data = DB.user_cart(userID);
                         cartList_gridview.DataSource = data;
                         cartList_gridview.DataBind();
                     }
@@ -32,6 +33,18 @@ namespace vehicle_clinic.Frontend.products
             else
             {
                 Response.Redirect("../login/front_login.aspx");
+            }
+        }
+
+        protected void discardCart_Click(object sender, EventArgs e)
+        {
+            HttpCookie cookie = Request.Cookies["front_LoggedUser"];
+            int userID = Convert.ToInt32(cookie["front_userID"]);
+
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            {
+                DB.emptyCartTable(userID);
+                Response.Redirect("index.aspx");
             }
         }
     }

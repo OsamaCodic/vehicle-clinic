@@ -20,6 +20,24 @@
     <Property Name="product_id" Type="int" />
     <Property Name="user_id" Type="int" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'vehicle_clinic.dbo.cartTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="cartTable">
+    <Key>
+      <PropertyRef Name="cartTable_id" />
+    </Key>
+    <Property Name="cartTable_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+  </EntityType>
+  <EntityType Name="cartTable2">
+    <Key>
+      <PropertyRef Name="cartTbl_ID" />
+    </Key>
+    <Property Name="cartTbl_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+  </EntityType>
   <EntityType Name="categories">
     <Key>
       <PropertyRef Name="category_id" />
@@ -101,6 +119,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_cartTable2_products">
+    <End Role="products" Type="Self.products" Multiplicity="0..1" />
+    <End Role="cartTable2" Type="Self.cartTable2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="cartTable2">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cartTable2_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="cartTable2" Type="Self.cartTable2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="cartTable2">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_products_categories">
     <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
     <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -130,9 +172,13 @@
     <Parameter Name="user_id" Type="int" Mode="In" />
   </Function>
   <Function Name="discardCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="emptyCartTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="user_id" Type="int" Mode="In" />
+  </Function>
   <Function Name="getBrands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getCart2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="getCartTable2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getCategories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="getSingleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -142,19 +188,39 @@
   <Function Name="products_with_Category" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="products_with_Category_and_Brand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="products_with_category_brand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="read_cartTable2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="readUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="totalUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="user_cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userID" Type="int" Mode="In" />
+  </Function>
   <Function Name="viewCartlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="vehicle_clinicModelStoreContainer">
     <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cart" EntityType="Self.cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cartTable2" EntityType="Self.cartTable2" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="purchaseTbl" EntityType="Self.purchaseTbl" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cartTable" EntityType="Self.cartTable" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [cartTable].[cartTable_id] AS [cartTable_id], 
+    [cartTable].[user_id] AS [user_id], 
+    [cartTable].[product_id] AS [product_id]
+    FROM [dbo].[cartTable] AS [cartTable]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_cart_products" Association="Self.FK_cart_products">
       <End Role="products" EntitySet="products" />
       <End Role="cart" EntitySet="cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cartTable2_products" Association="Self.FK_cartTable2_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="cartTable2" EntitySet="cartTable2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cartTable2_users" Association="Self.FK_cartTable2_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="cartTable2" EntitySet="cartTable2" />
     </AssociationSet>
     <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
       <End Role="categories" EntitySet="categories" />

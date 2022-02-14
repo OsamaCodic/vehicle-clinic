@@ -13,6 +13,10 @@
         <EntityTypeShape EntityType="vehicle_clinicModel.cart" Width="1.5" PointX="6.375" PointY="0.75" />
         <AssociationConnector Association="vehicle_clinicModel.FK_cart_products" />
         <EntityTypeShape EntityType="vehicle_clinicModel.purchaseTbl" Width="1.5" PointX="1.125" PointY="3.75" />
+        <EntityTypeShape EntityType="vehicle_clinicModel.cartTable2" Width="1.875" PointX="8.625" PointY="3.875" />
+        <EntityTypeShape EntityType="vehicle_clinicModel.cartTable" Width="1.875" PointX="0.5" PointY="7.25" />
+        <AssociationConnector Association="vehicle_clinicModel.FK_cartTable2_products" />
+        <AssociationConnector Association="vehicle_clinicModel.FK_cartTable2_users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

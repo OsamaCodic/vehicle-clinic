@@ -12,6 +12,7 @@
     <Property Name="created_at" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cartTable2" Relationship="vehicle_clinicModel.FK_cartTable2_users" FromRole="user" ToRole="cartTable2" />
   </EntityType>
   <EntityContainer Name="vehicle_clinicEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="users" EntityType="Self.user" />
@@ -63,6 +64,24 @@
     <FunctionImport Name="cart_withProducts" ReturnType="Collection(vehicle_clinicModel.cart_withProducts_Result)" />
     <EntitySet Name="purchaseTbls" EntityType="vehicle_clinicModel.purchaseTbl" />
     <FunctionImport Name="discardCart" />
+    <EntitySet Name="cartTable2" EntityType="vehicle_clinicModel.cartTable2" />
+    <EntitySet Name="cartTables" EntityType="vehicle_clinicModel.cartTable" />
+    <AssociationSet Name="FK_cartTable2_products" Association="vehicle_clinicModel.FK_cartTable2_products">
+      <End Role="product" EntitySet="products" />
+      <End Role="cartTable2" EntitySet="cartTable2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cartTable2_users" Association="vehicle_clinicModel.FK_cartTable2_users">
+      <End Role="user" EntitySet="users" />
+      <End Role="cartTable2" EntitySet="cartTable2" />
+    </AssociationSet>
+    <FunctionImport Name="emptyCartTable">
+      <Parameter Name="user_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="getCartTable2" ReturnType="Collection(vehicle_clinicModel.getCartTable2_Result)" />
+    <FunctionImport Name="read_cartTable2" ReturnType="Collection(vehicle_clinicModel.read_cartTable2_Result)" />
+    <FunctionImport Name="user_cart" ReturnType="Collection(vehicle_clinicModel.user_cart_Result)">
+      <Parameter Name="userID" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetUsers_Result">
     <Property Type="Int32" Name="user_id" Nullable="false" />
@@ -162,6 +181,7 @@
     <Property Name="product_description2" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="brand_id" Type="Int32" />
     <NavigationProperty Name="carts" Relationship="vehicle_clinicModel.FK_cart_products" FromRole="product" ToRole="cart" />
+    <NavigationProperty Name="cartTable2" Relationship="vehicle_clinicModel.FK_cartTable2_products" FromRole="product" ToRole="cartTable2" />
   </EntityType>
   <Association Name="FK_products_categories">
     <End Type="vehicle_clinicModel.category" Role="category" Multiplicity="0..1" />
@@ -442,4 +462,86 @@
     <Property Name="contact" Type="Int32" />
     <Property Name="email2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="cartTable2">
+    <Key>
+      <PropertyRef Name="cartTbl_ID" />
+    </Key>
+    <Property Name="cartTbl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="product_id" Type="Int32" />
+    <NavigationProperty Name="product" Relationship="vehicle_clinicModel.FK_cartTable2_products" FromRole="cartTable2" ToRole="product" />
+    <NavigationProperty Name="user" Relationship="vehicle_clinicModel.FK_cartTable2_users" FromRole="cartTable2" ToRole="user" />
+  </EntityType>
+  <EntityType Name="cartTable">
+    <Key>
+      <PropertyRef Name="cartTable_id" />
+    </Key>
+    <Property Name="cartTable_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="product_id" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_cartTable2_products">
+    <End Type="vehicle_clinicModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="vehicle_clinicModel.cartTable2" Role="cartTable2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="cartTable2">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cartTable2_users">
+    <End Type="vehicle_clinicModel.user" Role="user" Multiplicity="0..1" />
+    <End Type="vehicle_clinicModel.cartTable2" Role="cartTable2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="cartTable2">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="getCartTable2_Result">
+    <Property Type="Int32" Name="cartTbl_ID" Nullable="false" />
+    <Property Type="Int32" Name="user_id" Nullable="true" />
+    <Property Type="Int32" Name="product_id" Nullable="true" />
+    <Property Type="Int32" Name="product_id1" Nullable="false" />
+    <Property Type="Int32" Name="category_id" Nullable="true" />
+    <Property Type="String" Name="brand_title" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="product_name" Nullable="true" MaxLength="30" />
+    <Property Type="Double" Name="product_price" Nullable="true" />
+    <Property Type="Binary" Name="product_description" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="product_colours" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="product_dimensions" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="product_weight" Nullable="true" />
+    <Property Type="Int32" Name="product_tax" Nullable="true" />
+    <Property Type="Int32" Name="product_discount" Nullable="true" />
+    <Property Type="String" Name="release_date" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="total_sold" Nullable="true" />
+    <Property Type="String" Name="manufactured_type" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="availible_quantity" Nullable="true" />
+    <Property Type="String" Name="delived_time" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="display_order" Nullable="true" />
+    <Property Type="String" Name="created_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="updated_at" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="file_name" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="file_size" Nullable="true" />
+    <Property Type="Binary" Name="file_data" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="product_description2" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="brand_id" Nullable="true" />
+    <Property Type="String" Name="brand_name" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="read_cartTable2_Result">
+    <Property Type="Int32" Name="cartTbl_ID" Nullable="false" />
+    <Property Type="Int32" Name="user_id" Nullable="true" />
+    <Property Type="Int32" Name="product_id" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="user_cart_Result">
+    <Property Type="Int32" Name="cartTbl_ID" Nullable="false" />
+    <Property Type="Int32" Name="user_id" Nullable="true" />
+    <Property Type="Int32" Name="product_id" Nullable="true" />
+  </ComplexType>
 </Schema>

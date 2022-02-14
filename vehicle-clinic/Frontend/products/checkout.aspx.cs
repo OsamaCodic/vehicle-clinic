@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Net;
+using System.Net.Mail;
+
+
 namespace vehicle_clinic.Frontend.products
 {
     public partial class checkout : System.Web.UI.Page
@@ -57,15 +61,47 @@ namespace vehicle_clinic.Frontend.products
 
                 DB.purchaseTbls.Add(obj);
                 DB.SaveChanges();
+
+                //User will Received Mail
+                MailMessage mail = new System.Net.Mail.MailMessage();
+                mail.From = new MailAddress("imusamatest@gmail.com");
+                //mail.To.Add("imosamaaslam@gmail.com");
+                mail.To.Add(email_txtbox.Text);
+                mail.Subject = "VehicleClinic";
+                mail.Body = "<h1>Thank-your for purchasing product from VehicleClinic</h1>";
+                mail.IsBodyHtml = true;
+                try
+                {
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new System.Net.NetworkCredential("imusamatest@gmail.com", "test123252");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                        Response.Write("Mail Send successfully!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("Mail sending failed!");
+                }
+
+                //When user purchased product then empty his cart
+                HttpCookie cookie = Request.Cookies["front_LoggedUser"];
+                int userID = Convert.ToInt32(cookie["front_userID"]);
+                DB.emptyCartTable(userID);
+
                 Response.Redirect("Thanks.aspx");
             }
+            
         }
 
         protected void discardBtn_Click(object sender, EventArgs e)
         {
             using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
             {
-                DB.discardCart();
+                HttpCookie cookie = Request.Cookies["front_LoggedUser"];
+                int userID = Convert.ToInt32(cookie["front_userID"]);
+                DB.emptyCartTable(userID);
                 Response.Redirect("index.aspx");
             }
         }

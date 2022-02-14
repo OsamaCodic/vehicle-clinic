@@ -25,10 +25,13 @@ namespace vehicle_clinic.Frontend.login
                     Session["front_logged_userID"] = null;
                     Session["purchase_productID"] = null;
                     Session["purchase_productQty"] = null;
+                    
+                    int userID = Convert.ToInt32(cookie["front_userID"]);
 
                     using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
                     {
-                        DB.discardCart();
+                        DB.emptyCartTable(userID);
+                        Response.Redirect("index.aspx");
                     }
 
                 }

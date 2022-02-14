@@ -11,32 +11,59 @@ namespace vehicle_clinic.Frontend.products
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Title = "VehicleClinic | All Products";
-
-            HttpCookie cookie = Request.Cookies["front_LoggedUser"];
-
-            if (cookie != null)
+            if (!Page.IsPostBack)
             {
-                Session["auth_user"] = cookie["front_userID"]; // Session'll be start through Cookie
+            
+                this.Title = "VehicleClinic | All Products";
 
-                if (Session["auth_user"] != null)
+                HttpCookie cookie = Request.Cookies["front_LoggedUser"];
+
+                if (cookie != null)
                 {
-                    using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                    Session["auth_user"] = cookie["front_userID"]; // Session'll be start through Cookie
+
+                    if (Session["auth_user"] != null)
                     {
-                        var data = DB.products_with_Category_and_Brand();
+                        using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+                        {
+                            var data = DB.products_with_Category_and_Brand();
 
 
-                        front_productsRepeater.DataSource = data;
+                            front_productsRepeater.DataSource = data;
                         
 
-                        front_productsRepeater.DataBind();
+                            front_productsRepeater.DataBind();
+                        }
+                        
                     }
                 }
-            }
-            else
-            {
-                Response.Redirect("../login/front_login.aspx");
+                else
+                {
+                    Response.Redirect("../login/front_login.aspx");
+                }
             }
         }
+
+        protected void BuyProductBtn_Click(object sender, EventArgs e)
+        {
+            HttpCookie cookie = Request.Cookies["front_LoggedUser"];
+
+            int userID = Convert.ToInt32(cookie["front_userID"]); 
+            int productID = Convert.ToInt32((sender as LinkButton).CommandArgument);
+            //Response.Write("<script>alert(" + product_id + ");</script>");
+            
+            using (vehicle_clinicEntities DB = new vehicle_clinicEntities())
+            {
+                cartTable2 obj = new cartTable2();
+                obj.user_id = userID;
+                obj.product_id = productID;
+
+                DB.cartTable2.Add(obj);
+                DB.SaveChanges();
+
+                Response.Redirect("details.aspx?product_id=" + productID, true);
+            }
+        }
+        
     }
 }
